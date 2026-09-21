@@ -1,2 +1,4 @@
 deploy.py
 *.log
+*.prev
+__pycache__/
