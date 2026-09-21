@@ -164,6 +164,66 @@
     </div>
   </section>
 
+    <!-- ============ 实训现场 · 真实瞬间（12 张真实照片） ============ -->
+    <section class="pz-sec sx-sec" id="scenes">
+      <div class="pz-inner">
+        <div class="pz-head">
+          <div class="pz-kicker">— Field Notes · 实训现场</div>
+          <h2 class="pz-title">实训现场 · <em>真实瞬间</em></h2>
+          <p class="pz-sub">妇联班、综保区企业班、亲子 AI 科普营——课件里的每一步，都从这些现场里打磨出来。</p>
+        </div>
+        <div class="pz-grid sx-grid">
+          <figure class="pz-item">
+            <img src="img/train01.jpg" alt="实训现场 1 · 三亚市海棠区妇联干部培训班" loading="lazy" />
+            <figcaption class="pz-cap">三亚市海棠区妇联干部培训班</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train02.jpg" alt="实训现场 2 · 省妇联干部素质能力提升班" loading="lazy" />
+            <figcaption class="pz-cap">省妇联干部素质能力提升班</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train03.jpg" alt="实训现场 3 · 琼中县妇联干部培训班" loading="lazy" />
+            <figcaption class="pz-cap">琼中县妇联干部培训班</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train04.jpg" alt="实训现场 4 · AI 工具专题 · 讲台演讲" loading="lazy" />
+            <figcaption class="pz-cap">AI 工具专题 · 讲台演讲</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train05.jpg" alt="实训现场 5 · 课间一对一辅导" loading="lazy" />
+            <figcaption class="pz-cap">课间一对一辅导</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train06.jpg" alt="实训现场 6 · 亲子 AI 创造营 · 授课" loading="lazy" />
+            <figcaption class="pz-cap">亲子 AI 创造营 · 授课</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train07.jpg" alt="实训现场 7 · 美兰区暑期亲子 AI 科普 · 大合照" loading="lazy" />
+            <figcaption class="pz-cap">美兰区暑期亲子 AI 科普 · 大合照</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train08.jpg" alt="实训现场 8 · 指导孩子上机实操" loading="lazy" />
+            <figcaption class="pz-cap">指导孩子上机实操</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train09.jpg" alt="实训现场 9 · 综保区企业班 · 圆桌研讨" loading="lazy" />
+            <figcaption class="pz-cap">综保区企业班 · 圆桌研讨</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train10.jpg" alt="实训现场 10 · 综保区第五期 · 结课合影" loading="lazy" />
+            <figcaption class="pz-cap">综保区第五期 · 结课合影</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train11.jpg" alt="实训现场 11 · 综保区企业班 · 大屏实操" loading="lazy" />
+            <figcaption class="pz-cap">综保区企业班 · 大屏实操</figcaption>
+          </figure>
+          <figure class="pz-item">
+            <img src="img/train12.jpg" alt="实训现场 12 · 综保区企业班 · 现场指导" loading="lazy" />
+            <figcaption class="pz-cap">综保区企业班 · 现场指导</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
   <section class="pz-sec" id="voices">
   <div class="pz-inner">
     <div class="pz-head">
@@ -213,7 +273,14 @@
   .pz-item img{width:100%;height:auto;display:block}
   .pz-cap{position:absolute;left:12px;bottom:12px;font-size:11px;letter-spacing:.06em;color:#fff;background:rgba(0,0,0,.42);padding:5px 11px;border-radius:999px;backdrop-filter:blur(6px);font-family:"JetBrains Mono",monospace}
   @media(max-width:600px){.pz-grid{grid-template-columns:repeat(2,1fr);gap:12px}.pz-item{border-radius:12px}}
-  </style>
+  
+/* ===== 实训现场 · 12 张真实照片墙 ===== */
+.sx-sec{border-top:1px solid rgba(128,128,128,.16)}
+.sx-grid{margin-top:6px}
+.sx-grid .pz-item img{aspect-ratio:4 / 3;object-fit:cover;height:auto}
+.sx-grid .pz-cap{max-width:calc(100% - 24px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:560px){.sx-grid{grid-template-columns:1fr}}
+</style>
 </section>
 
 <footer>
