@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第6款 · 太空液态玻璃风 —— 别人怎么做出同款</title>
+<style>
+:root{--ink:#1f2421;--paper:#faf8f4;--line:#e2ddd2;--muted:#6b6f69;--green:#0f3d34;--terra:#b04a2f;--gold:#c9a05a;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.75;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px;}
+h1{font-size:26px;font-weight:700;letter-spacing:-.01em;}
+h1 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:6px;}
+section{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);}
+h2{font-size:21px;margin:6px 0 14px;}
+h3{font-size:16px;margin:18px 0 8px;color:var(--green);}
+p{margin:8px 0;color:#33382f;}
+.tag{display:inline-block;background:var(--green);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;margin-right:6px;vertical-align:middle;}
+.tag.t{background:var(--terra);}
+pre{background:#1f2421;color:#e8e4da;padding:16px 18px;border-radius:8px;overflow-x:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:10px 0;}
+.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0;}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-bottom:1px dashed var(--line);}
+.steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:26px;height:26px;background:var(--terra);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-size:14px;font-weight:600;margin-top:10px;margin-right:8px;}
+.btn.g{background:var(--green);}
+.note{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); padding:14px 16px;border-radius:6px;margin:14px 0;font-size:14px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#f0ece2;font-weight:700;}
+a{color:var(--green);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>第6款 · 太空液态玻璃个人站 —— 别人怎么做出同款<small>别人操作的实体教程：复制提示词 + SOP 步骤，零代码也能出同款</small></h1>
+
+<section>
+<h2>① 这款长什么样</h2>
+<p><span class="tag">纯黑沉浸</span><span class="tag t">玻璃拟态</span><span class="tag">全屏视频</span><span class="tag">逐词模糊入场</span><span class="tag">React+Framer Motion</span></p>
+<p>对标「太空液态玻璃」视觉：纯黑底、全屏循环背景视频、玻璃拟态导航/卡片/按钮、标题逐词模糊入场（BlurText）、区块淡入。技术上用 React 18 + Framer Motion 写成<b>单文件 HTML</b>（CDN 引 react / babel / framer-motion，双击即开、零构建、可部署）。</p>
+<a class="btn g" href="./index.html" target="_blank">↗ 看第6款成品实例</a>
+</section>
+
+<section>
+<h2>② 复制哪段提示词</h2>
+<div class="note">下面这段就是你给我的原版「太空液态玻璃」设计提示词（零改动）。它是写给 React 编程工具的，我已确认能跑通：<b>window.Motion = window.Motion || window.FramerMotion</b>（framer-motion 的 UMD 全局名是 Motion，写错会白屏）。别人粘到 WorkBuddy 就能出同款。</div>
+<pre>你是一个网页生成器。请基于下面【设计规格】和【我的个人信息】，生成一个单文件 HTML 个人主页：双击就能在浏览器打开、零依赖、不要 React/Vite 工程、所有 CSS/JS 内联、除了 Google Fonts 和背景视频外不引用任何外部文件。不要向我提问，直接生成完整 .html 文件。
+
+【设计规格 · 太空液态玻璃风】
+- 字体 Google Fonts 引 Instrument Serif(ital@1) + Barlow(300;400;500;600) + Noto Serif SC 中文兜底。
+- CDN：tailwindcss / react@18.3.1 / react-dom@18.3.1 / @babel/standalone@7.29.0 / framer-motion@11.11.17（不要加 integrity 哈希）。
+- framer-motion 加载后必写：window.Motion = window.Motion || window.FramerMotion（UMD 全局名为 Motion）。
+- Tailwind 配置 font-heading→Instrument Serif、font-body→Barlow，默认圆角 pill（DEFAULT:9999px）。
+- 液态玻璃 CSS 原样写：.liquid-glass（rgba(255,255,255,0.01)+blur(4px)+1.4px 渐变描边 mask-composite xor）；.liquid-glass-strong（blur(50px)）。
+- FadingVideo 组件：rAF 逐帧控透明度、FADE_MS=500、距结束 0.55s 开始淡出、ended 后 100ms 重置重播、关掉 loop、视频上绝不用 CSS transition。
+- BlurText：IntersectionObserver 触发（10% 可见），按空格分词，每词 motion.span；initial {filter:'blur(10px)',opacity:0,y:50} 三段关键帧到 {blur(5)→blur(0),opacity .5→1,y -5→0}；duration .7、times [0,.5,1]、easeOut、逐词 delay=i*0.1s、父级 flex 换行居中。
+- 各区块 Framer Motion 入场 delays 依次：徽章 .4 / 副标 .8 / 按钮 1.1 / 数据卡 1.3 / 伙伴 1.4。
+- 全站白字、不要绿色、不要渐变背景；视频上不加暗色蒙版；对比靠玻璃质感。
+- 双屏结构：① Hero（顶部玻璃胶囊导航 + 大标题逐词入场 + 副标 + 两个主/次按钮 + 两张数据卡 + 合作伙伴行）；② Capabilities（视频全屏铺满 + 左上 kicker + 大标题两行 + 三张能力卡，每张含图标 + 4 个标签 + 标题 + 描述）。
+
+【我的个人信息】（自动拆分到大标题 / 副标题 / 徽章 / 5 导航 / 主次按钮 / 两张数据卡 / 5 合作伙伴 / 三张能力卡）：
+- 名字：小沅老师
+- 身份：AI 讲师 × 心理咨询师 × 高级人工智能训练师
+- 主张：用 AI 与心理学，陪女性长出力量
+- 三门主打：AI 零代码编程 / Vibe Coding 创意编程 / AI × 心理学
+- 现负责：海南省妇联女性 AI 学习圈进阶班</pre>
+</section>
+
+<section>
+<h2>③ 别人操作的 SOP（手把手 7 步）</h2>
+<ol class="steps">
+<li><b>打开 WorkBuddy</b>，新建一个对话。</li>
+<li><b>复制上面整段提示词</b>（从"你是一个网页生成器"到最后）。</li>
+<li>把【我的个人信息】换成<b>你自己的真实资料</b>（名字、定位、主张、三张能力卡主题）。</li>
+<li><b>发送</b>，等它生成 <code>index.html</code>（React + Babel 单文件，几十秒到一两分钟）。</li>
+<li><b>双击本地 index.html</b> 预览——首次打开需联网加载 React/Framer Motion（CDN）。</li>
+<li><b>换背景视频</b>：把你的视频链接或本地视频放进同文件夹，改代码里的视频 src。</li>
+<li><b>部署</b>：用 WorkBuddy 的「发布 / 部署」功能，拿到一个谁都能点开的链接，发到群里。</li>
+</ol>
+<div class="note"><b>关键提醒：</b>这两段视频用的是远程链接，部署后别人有网就能看；若失效，页面会先显示深空黑底+星点兜底（不会白屏）。这段提示词是"款式模板"——别人填自己信息出的是他自己同款站。</div>
+</section>
+
+<section>
+<h2>④ 复制提示词能出"一模一样"吗</h2>
+<table>
+<tr><th>项</th><th>单文件 HTML（React+Framer Motion）</th></tr>
+<tr><td>粘到 WorkBuddy 直接出第6款？</td><td><b>能</b>，视觉/结构/动效一致，可双击部署</td></tr>
+<tr><td>零基础学员可用？</td><td>可用；首次打开需联网加载 CDN</td></tr>
+<tr><td>图片 / 视频</td><td>换成你自己真实素材后完全一致</td></tr>
+</table>
+<p style="margin-top:14px">结论：上面这段中文提示词就是"好用的提示词"——直接产出第6款同款、可部署的单文件网站。</p>
+<a class="btn" href="./index.html" target="_blank">↗ 回到第6款实例</a>
+<a class="btn g" href="../index.html" target="_blank">↗ 回到七款总览</a>
+</section>
+
+</div>
+</body>
+</html>

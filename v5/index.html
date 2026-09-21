@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>美瑶老师 · AI × 心理学 | 个人主页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+    background-color: #000000;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== 八边形裁切按钮 ===== */
+  .btn-cut {
+    clip-path: polygon(
+      12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px),
+      calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px
+    );
+  }
+  .btn-cut-border {
+    position: relative;
+    background: #fff;
+    clip-path: polygon(
+      12px 0%, calc(100% - 12px) 0%, 100% 12px, 100% calc(100% - 12px),
+      calc(100% - 12px) 100%, 12px 100%, 0% calc(100% - 12px), 0% 12px
+    );
+  }
+  .btn-cut-border::before {
+    content: '';
+    position: absolute;
+    inset: 1px;
+    background: #000;
+    clip-path: polygon(
+      11px 0%, calc(100% - 11px) 0%, 100% 11px, 100% calc(100% - 11px),
+      calc(100% - 11px) 100%, 11px 100%, 0% calc(100% - 11px), 0% 11px
+    );
+    z-index: 0;
+  }
+  .btn-cut-border > * { position: relative; z-index: 1; }
+
+  .btn-cut-sm {
+    clip-path: polygon(
+      8px 0%, calc(100% - 8px) 0%, 100% 8px, 100% calc(100% - 8px),
+      calc(100% - 8px) 100%, 8px 100%, 0% calc(100% - 8px), 0% 8px
+    );
+  }
+
+  /* ===== 入场动画 ===== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  .anim-stagger {
+    opacity: 0;
+    animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+  .anim-fade {
+    opacity: 0;
+    animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* ===== 布局 ===== */
+  .page {
+    height: 100vh;
+    width: 100%;
+    background: #000;
+    padding: 12px;
+    font-family: 'Inter', 'Noto Sans SC', sans-serif;
+  }
+  @media (min-width: 768px) { .page { padding: 16px; } }
+
+  .glass {
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
+    background: #000;
+  }
+  /* 暗色蒙版：保证文字在任意视频帧上都清晰可读 */
+  .glass::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg,
+        rgba(0,0,0,0.50) 0%,
+        rgba(0,0,0,0.18) 38%,
+        rgba(0,0,0,0.22) 62%,
+        rgba(0,0,0,0.60) 100%);
+  }
+
+  video.bg-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* 导航 */
+  nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 24px 0;
+  }
+  @media (min-width: 768px) { nav { padding: 32px 40px 0; } }
+
+  .logo-block { display: flex; flex-direction: column; align-items: flex-start; }
+  .logo-svg { width: 56px; height: 56px; }
+  @media (min-width: 768px) { .logo-svg { width: 64px; height: 64px; } }
+  .logo-text {
+    display: block;
+    color: #fff;
+    font-size: 10px;
+    letter-spacing: 0.4em;
+    margin-top: 4px;
+    font-weight: 300;
+  }
+  @media (min-width: 768px) { .logo-text { font-size: 12px; } }
+
+  .nav-btns { display: flex; align-items: center; gap: 12px; }
+  .nav-btn {
+    display: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background: transparent;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: rgba(255,255,255,0.10); }
+  .nav-btn-solid {
+    display: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    background: #fff;
+    color: #000;
+    transition: background 0.2s;
+  }
+  .nav-btn-solid:hover { background: rgba(255,255,255,0.90); }
+  @media (min-width: 768px) {
+    .nav-btn, .nav-btn-solid { display: inline-block; }
+  }
+
+  /* 主体 */
+  main {
+    position: relative;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 24px 32px;
+  }
+  @media (min-width: 768px) { main { padding: 0 40px 40px; } }
+
+  .top { flex: 1; display: flex; align-items: center; position: relative; }
+
+  .left-col {
+    display: none;
+    flex-direction: column;
+    gap: 24px;
+    position: absolute;
+    left: 0;
+    top: 18%;
+  }
+  @media (min-width: 1024px) { .left-col { display: flex; } }
+  .left-col p {
+    color: rgba(255,255,255,0.80);
+    font-size: 16px;
+    line-height: 1.7;
+    max-width: 220px;
+  }
+  .left-deco { display: flex; flex-direction: column; gap: 8px; margin-top: 16px; }
+  .portrait {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 9999px;
+    border: 1px solid rgba(255,255,255,0.40);
+    overflow: hidden;
+    background: linear-gradient(135deg, #7ec8e3, #d4a5a5);
+  }
+  .portrait img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .portrait-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 300;
+  }
+  .left-tag { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .left-tag .t1 { color: rgba(255,255,255,0.70); font-size: 12px; }
+  .left-tag .t2 { color: rgba(255,255,255,0.50); font-size: 12px; }
+
+  .center {
+    width: 100%;
+    text-align: center;
+  }
+  h1.title {
+    color: #fff;
+    font-size: 30px;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  }
+  @media (min-width: 640px)  { h1.title { font-size: 36px; } }
+  @media (min-width: 768px)  { h1.title { font-size: 48px; } }
+  @media (min-width: 1024px) { h1.title { font-size: 60px; } }
+  @media (min-width: 1280px) { h1.title { font-size: 72px; } }
+
+  /* 底部三栏 */
+  .bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    align-items: center;
+    margin-top: 32px;
+  }
+  @media (min-width: 768px) { .bottom { grid-template-columns: repeat(3, 1fr); } }
+
+  .col1 { display: flex; align-items: center; justify-content: center; }
+  .col1 p {
+    color: #fff;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 260px;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .col1 { justify-content: flex-end; }
+    .col1 p { text-align: left; margin-left: auto; }
+  }
+
+  .col2 { display: flex; flex-direction: column; align-items: center; gap: 32px; }
+  @media (min-width: 768px) { .col2 { gap: 96px; } }
+  .col2 .label { color: #fff; font-size: 24px; font-weight: 500; }
+  @media (min-width: 768px) { .col2 .label { font-size: 30px; } }
+  .cta {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 0;
+    background: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .cta:hover { background: rgba(255,255,255,0.90); }
+  .cta svg { width: 16px; height: 16px; transition: transform 0.2s; }
+  .cta:hover svg { transform: translateX(4px); }
+
+  .col3 { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  @media (min-width: 768px) { .col3 { justify-content: flex-end; } }
+  .social {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .social:hover { background: rgba(255,255,255,0.90); }
+  .social svg { width: 16px; height: 16px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .anim-stagger, .anim-fade { animation: none !important; opacity: 1 !important; }
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="glass">
+      <!-- 背景循环视频 -->
+      <video
+        class="bg-video anim-fade"
+        style="animation-delay: 0.2s"
+        autoplay loop muted playsinline
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260717_120352_eb988725-1351-43b3-8095-16e4a1005e3d.mp4"
+      ></video>
+
+      <!-- 导航 -->
+      <nav>
+        <div class="logo-block anim-stagger" style="animation-delay: 0.1s">
+          <svg class="logo-svg" viewBox="0 0 256 256" fill="#ffffff">
+            <path d="M128 24 L150 106 L232 128 L150 150 L128 232 L106 150 L24 128 L106 106 Z" />
+          </svg>
+          <span class="logo-text">小 沅</span>
+        </div>
+        <div class="nav-btns anim-stagger" style="animation-delay: 0.2s">
+          <button class="nav-btn btn-cut-border"><span>关于我</span></button>
+          <button class="nav-btn-solid btn-cut">预约咨询</button>
+        </div>
+      </nav>
+
+      <!-- 主体 -->
+      <main>
+        <div class="top">
+          <!-- 左侧栏（大屏显示） -->
+          <div class="left-col anim-stagger" style="animation-delay: 0.4s">
+            <p>与我一同<br />探索 AI 与心理<br />的交汇之境</p>
+            <div class="left-deco">
+              <div class="portrait">
+                <img
+                  src="img/photo.jpg"
+                  alt="美瑶老师"
+                  onerror="this.style.display='none';"
+                />
+                <div class="portrait-fallback">沅</div>
+              </div>
+              <div class="left-tag">
+                <span class="t1">智能心域</span>
+                <span class="t2">01</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 居中主标题 -->
+          <div class="center anim-stagger" style="animation-delay: 0.5s">
+            <h1 class="title">
+              AI × 心理学<br />
+              女性成长引路人<br />
+              美瑶老师
+            </h1>
+          </div>
+        </div>
+
+        <!-- 底部三栏 -->
+        <div class="bottom">
+          <div class="col1 anim-stagger" style="animation-delay: 0.7s">
+            <p>我打破传统边界，以 AI 与心理学重塑女性成长的可能性——让每一次学习，都成为一次自我觉醒。</p>
+          </div>
+
+          <div class="col2 anim-stagger" style="animation-delay: 0.85s">
+            <span class="label">心智实验室</span>
+            <button class="cta btn-cut">
+              立即预约
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14" /><path d="M13 6l6 6-6 6" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="col3 anim-stagger" style="animation-delay: 1s">
+            <a class="social btn-cut-sm" href="#" title="微信" aria-label="微信">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7A8.5 8.5 0 1 1 21 11.5z" />
+              </svg>
+            </a>
+            <a class="social btn-cut-sm" href="#" title="小红书" aria-label="小红书">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+              </svg>
+            </a>
+            <a class="social btn-cut-sm" href="#" title="微博" aria-label="微博">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      <section class="pz-sec" id="voices">
+  <div class="pz-inner">
+    <div class="pz-head">
+      <div class="pz-kicker">— Real Voices · 学员真实好评</div>
+      <h2 class="pz-title">听过课的<em>她们</em>，<br/>怎么说。</h2>
+      <p class="pz-sub">以下为学员与合作伙伴的微信真实反馈截图，原图未删改、不修饰。<br/>想定制课程或约时间？微信 / 电话 <a class="pz-tel" href="tel:18976573949">18976573949</a></p>
+    </div>
+    <div class="pz-grid">
+      <figure class="pz-item">
+        <img src="./img/hp1.png" alt="学员真实好评 1" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①1</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp2.png" alt="学员真实好评 2" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①2</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp3.png" alt="学员真实好评 3" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①3</figcaption>
+      </figure>
+    </div>
+  </div>
+  <style>
+  .pz-sec{padding:clamp(72px,9vh,128px) clamp(20px,4vw,56px);position:relative}
+  .pz-inner{max-width:1180px;margin:0 auto}
+  .pz-head{margin-bottom:44px}
+  .pz-kicker{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+  .pz-title{font-family:"Fraunces",Georgia,"Songti SC","STSong",serif;font-weight:300;font-size:clamp(32px,4.6vw,64px);line-height:1.06;letter-spacing:-.02em}
+  .pz-title em{font-style:italic}
+  .pz-sub{margin-top:16px;font-size:15px;line-height:1.7;opacity:.72}
+  .pz-tel{color:inherit;text-decoration:underline;text-underline-offset:3px}
+  .pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .pz-item{position:relative;margin:0;border-radius:16px;overflow:hidden;background:rgba(128,128,128,.06);box-shadow:0 14px 34px -20px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;cursor:zoom-in}
+  .pz-item:hover{transform:translateY(-8px);box-shadow:0 30px 56px -24px rgba(0,0,0,.6)}
+  .pz-item img{width:100%;height:auto;display:block}
+  .pz-cap{position:absolute;left:12px;bottom:12px;font-size:11px;letter-spacing:.06em;color:#fff;background:rgba(0,0,0,.42);padding:5px 11px;border-radius:999px;backdrop-filter:blur(6px);font-family:"JetBrains Mono",monospace}
+  @media(max-width:600px){.pz-grid{grid-template-columns:repeat(2,1fr);gap:12px}.pz-item{border-radius:12px}}
+  </style>
+</section>
+
+</main>
+    </div>
+  </div>
+</body>
+</html>

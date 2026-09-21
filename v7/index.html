@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN" data-page-node-id="qZUhNuCp1K3FKqaObsU6xM">
+<head data-page-node-id="mSmTZTjD3j1TVt200j7uBl">
+<meta charset="UTF-8" data-page-node-id="QUItDEanfzDBnBwE3V22jC" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="KMXiADfXuhLFCkHL1tCBcE" />
+<title>美瑶老师 · Drift calm 风个人主页</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        keyframes: {
+          'fade-in-down': {
+            '0%': { opacity: '0', transform: 'translateY(-8px)' },
+            '100%': { opacity: '1', transform: 'translateY(0)' },
+          },
+        },
+        animation: { 'fade-in-down': 'fade-in-down 0.2s ease-out' },
+      },
+    },
+  };
+</script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Inter:wght@400;500;600&display=swap');
+  body {
+    font-family: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  .serif-italic { font-family: 'Instrument Serif', 'Kaiti SC', 'STKaiti', KaiTi, serif; font-style: italic; }
+  .hamburger-line { transition: transform .3s cubic-bezier(.77,0,.175,1); }
+  .nav-open .line-top { transform: translateY(3.5px) rotate(45deg); }
+  .nav-open .line-bottom { transform: translateY(-3.5px) rotate(-45deg); }
+  .dropdown { transition: all .3s; transform-origin: top; }
+  .dropdown-closed { opacity: 0; transform: scale(.95) translateY(-8px); pointer-events: none; }
+  .dropdown-open { opacity: 1; transform: scale(1) translateY(0); pointer-events: auto; }
+  .feature-card { transition: transform .7s ease-out, opacity .7s ease-out; transform: translateX(4rem); opacity: 0; }
+  .feature-card.revealed { transform: translateX(0); opacity: 1; }
+  @keyframes ken-burns {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+  }
+  .ken-burns { animation: ken-burns 18s ease-in-out infinite; }
+</style>
+</head>
+<body data-page-node-id="zrUIxdQozIaujJupc6KnWi">
+
+<!-- ========== SECTION 1: HERO ========== -->
+<section class="relative h-screen overflow-hidden" style="margin-bottom:-25px" data-page-node-id="LAMhxpXQTjuEhP6huNwFl8">
+  <video src="./img/hero.mp4"
+    poster="./img/photo.jpg"
+    autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover" data-page-node-id="rnfGbtLfhmWrqPpU8nzxjk"></video>
+  <div class="absolute inset-0 bg-black/20" data-page-node-id="FCg5u0SDeDOMju3lWEGFAt"></div>
+
+  <!-- 悬浮胶囊导航 -->
+  <div class="absolute top-6 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center" id="navWrap" data-page-node-id="9koyAiwBLGtkdKTCDvNZ3C">
+    <div class="bg-white rounded-full shadow-lg flex items-center gap-4 pl-5 pr-4 py-2.5" data-page-node-id="JkEJAnMaiqWloyJ5CLhwsU">
+      <span class="text-lg font-bold tracking-tight text-black whitespace-nowrap" data-page-node-id="mR0wpOUBvPop310AE3yc5K">美瑶老师.</span>
+      <button aria-label="菜单" onclick="toggleNav()" class="relative w-6 h-6 flex flex-col items-center justify-center gap-[5px]" data-page-node-id="0uUBoKFA0TWld6CFfErnM8">
+        <span class="hamburger-line line-top block w-5 h-[2px] bg-black" data-page-node-id="PojfiU6Mrig4PGGYPWMEnz"></span>
+        <span class="hamburger-line line-bottom block w-5 h-[2px] bg-black" data-page-node-id="XNyUX5qvH0HJV9iibWF5tK"></span>
+      </button>
+    </div>
+    <div id="dropdown" class="dropdown dropdown-closed mt-2 bg-white rounded-2xl shadow-lg px-6 py-4 flex flex-col gap-3 min-w-[180px]" data-page-node-id="vGi4WglSYv3dbFjQ8MJPMR">
+      <a href="#features" onclick="toggleNav()" class="text-sm font-medium text-black hover:opacity-60" data-page-node-id="ROfBIDMILZkLPU5H6uuhUf">课程亮点</a>
+      <a href="#features" onclick="toggleNav()" class="text-sm font-medium text-black hover:opacity-60" data-page-node-id="gg7BMxTVimBHplePbICeD4">AI × 心理学</a>
+      <a href="#about" onclick="toggleNav()" class="text-sm font-medium text-black hover:opacity-60" data-page-node-id="aYSNB0hxeEBew30NDWlrLT">常见问题</a>
+    </div>
+  </div>
+
+  <!-- Hero 文案（底部对齐） -->
+  <div class="relative z-10 h-full flex flex-col justify-end items-center pb-12 md:pb-16 px-4" data-page-node-id="W3QrYKHrGWxkCN6Er8AC56">
+    <h1 class="text-center text-5xl sm:text-7xl md:text-8xl lg:text-[96px] font-normal text-white leading-[1.1] tracking-tight" data-page-node-id="UWkqtDGal259eAFhaERzEr">
+      掌握自己的节奏<br  data-page-node-id="vyYVkCIOWAk1lsSHyHmYDA"/>告别 <em class="serif-italic" data-page-node-id="21KIASvlceJgJoYnUejmDE">内耗与焦虑</em>
+    </h1>
+    <p class="text-white/80 text-sm md:text-base font-medium max-w-[420px] text-center mt-6" data-page-node-id="AHNhCpmVaTltqTeDB7mTKP">
+      美瑶老师的 AI 课堂：一套温柔、不催促的学习方式，把散乱的想法变成清晰的数字作品
+    </p>
+    <div class="mt-8 bg-black/25 backdrop-blur-md rounded-xl flex flex-row items-center pl-6 pr-1 py-1 gap-4" data-page-node-id="DhGMnij74cIAvbBr0hlTBO">
+      <p class="hidden sm:block text-white text-sm font-medium" data-page-node-id="z2Zggg5HL7MNHtwPnWbDYK">没有噪音，没有复杂的系统。只有你的一天，被温柔地理顺。</p>
+      <p class="sm:hidden text-white text-sm font-medium" data-page-node-id="0Nz0oK6H5K1wlUBxZpJx18">没有噪音，只有温柔理顺的一天。</p>
+      <button class="bg-white text-black text-sm font-medium px-5 py-2.5 rounded-xl hover:bg-white/90 whitespace-nowrap" data-page-node-id="v6ckxpHcXVG3vXBj9ddBVx">免费报名</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 2: ABOUT ========== -->
+<section id="about" class="bg-[#F6E4CF] rounded-t-[25px] relative z-10 py-20 md:py-32 px-6" data-page-node-id="yKLLpMvh5cU6FfrBQJyBVr">
+  <div class="max-w-3xl mx-auto flex flex-col items-center gap-8" data-page-node-id="6h4L49Gg8lJkGMRqssCRH1">
+    <p class="text-[#321C04] text-base md:text-lg text-center leading-relaxed max-w-lg" data-page-node-id="dRY2hVwnG9mA4ESLa7rQDT">
+      我打磨的是顺应你节奏的 AI 学习方式，而不是逼你追赶技术。为轻松、专注与心流而设计——零基础也能安心上手。
+    </p>
+    <div class="flex flex-wrap justify-center gap-4" data-page-node-id="GDQqecg8xEe8SiTIBcp4XG">
+      <button class="bg-[#321C04] text-[#FFF9F2] rounded-full flex items-center gap-3 pl-1.5 pr-6 py-1.5 hover:bg-[#1F1003] transition-colors" data-page-node-id="JHhI314Zcs3yb2hxKFIHTv">
+        <span class="bg-[#FFF9F2] rounded-full w-9 h-9 flex items-center justify-center" data-page-node-id="OUPZmYVNZIubndR7LW1tz2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#321C04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="EDCP0KXYFqQOpOdA0RbUnY"><rect width="20" height="16" x="2" y="4" rx="2" data-page-node-id="Q4WbU6QEl2EEpeFbxtFrhO"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" data-page-node-id="u95P9MckWQcV15pwdZZcFJ"/></svg>
+        </span>
+        <span class="text-sm uppercase tracking-wide font-medium" data-page-node-id="eor3jSLd1iL8MhB9u9yHsz">联系美瑶老师</span>
+      </button>
+      <button class="bg-[#D9C4AA] text-[#321C04] rounded-full flex items-center gap-3 pl-1.5 pr-6 py-1.5 hover:bg-[#CEBA9E] transition-colors" data-page-node-id="oMKhH7RhN3XutEz9t3mgVs">
+        <span class="bg-[#FFF9F2] rounded-full w-9 h-9 flex items-center justify-center" data-page-node-id="iatUPPGZUSuu2lh492cNHL">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#321C04" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="kuRoAQRJIfwGCVfmsIyquu"><path d="M5 12h14" data-page-node-id="kAhvW2Gdr1XrCBocmFKNz5"/><path d="M12 5v14" data-page-node-id="ivXcCKROxSCCNXJo3XxZYb"/></svg>
+        </span>
+        <span class="text-sm uppercase tracking-wide font-medium" data-page-node-id="kGIkG19UooWe7IOos9TbER">关注课程动态</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- 装饰分割线 -->
+  <div class="flex items-center gap-2 w-full my-16 md:my-24" data-page-node-id="IVNpxwVDygOCjlsQTLwGKu">
+    <span class="w-2 h-2 rounded-full bg-[#D9C4AA] shrink-0" data-page-node-id="kWKEBo4Kaf9d0cLXAR4O68"></span>
+    <span class="flex-1 h-[2px] bg-[#D9C4AA]" data-page-node-id="kZ5MicfyhOHPFLy8EvfSSI"></span>
+    <span class="w-2 h-2 rounded-full bg-[#D9C4AA] shrink-0" data-page-node-id="Qm0acZJQdRhnFIUbDQKTO7"></span>
+  </div>
+
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row gap-10 md:gap-16 items-start" data-page-node-id="9aCqmd6tJafn6DHv4w6hWG">
+    <div class="flex items-center gap-4 shrink-0" data-page-node-id="PWi1ICnK52G5bbLBTgE5e1">
+      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 256 256" fill="none" data-page-node-id="0xcLvsiqmtBR2CcmhVSQ3I">
+        <path d="M 256 256 L 178 256 C 150.386 256 128 233.614 128 206 L 128 256 L 0 256 L 0 192 C 0 156.654 28.654 128 64 128 C 99.346 128 128 156.654 128 192 L 128 128 L 256 128 Z M 78 0 C 105.614 0 128 22.386 128 50 L 128 0 L 256 0 L 256 64 C 256 99.346 227.346 128 192 128 C 156.654 128 128 99.346 128 64 L 128 128 L 0 128 L 0 0 Z" fill="#321C04" data-page-node-id="fCqfBA9rUEPe1Qd1ZTO9e8" />
+      </svg>
+      <span class="text-xs uppercase tracking-widest font-semibold text-[#321C04] leading-relaxed" data-page-node-id="PboAwXCoUrpdB3NMHX3CXE">AI 讲师<br  data-page-node-id="g8hXMBJyIA32wxj4mbmPFK"/>心理咨询师</span>
+    </div>
+    <div class="flex flex-col lg:flex-row gap-10 items-start" data-page-node-id="kRJx2xdNIdQWF34R4rGF7I">
+      <img src="./img/photo.jpg" alt="美瑶老师"
+        class="w-40 h-40 md:w-48 md:h-48 rounded-3xl object-cover shrink-0 shadow-lg" data-page-node-id="n70GE71sgwDShmZ9eXdMYw" />
+      <p class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] leading-[1.3] font-normal text-[#321C04]" data-page-node-id="jWzdk3YlGwa5pqosNS7VGb">
+        我是美瑶老师（吴美瑶），AI 讲师 × 心理咨询师 × 高级人工智能训练师。我专注 AI 与心理学的交叉实践，帮助职场女性用零代码方式搭建自己的数字作品——让工具承担认知负担，你只需专注真正重要的事。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SECTION 3: FEATURES（单列垂直堆叠） ========== -->
+<section id="features" class="relative px-5 md:px-10 lg:px-16 py-20 md:py-32 lg:py-40" data-page-node-id="AdI5arduovrvFG9MBCwcdN">
+  <div class="fixed inset-0 -z-10 bg-cover bg-center"
+    style="background-image:url('./img/photo.jpg'); filter: brightness(0.25) blur(12px) saturate(0.5)" data-page-node-id="VowJDYG9eDyi6sRjsyeZBO"></div>
+  <div class="fixed inset-0 -z-10 bg-black/40" data-page-node-id="Gn0TrR2f9Bb7J2zPVohKEm"></div>
+
+  <!-- 单列垂直堆叠 · 三张特性卡占满宽度 -->
+  <div class="max-w-[1100px] mx-auto flex flex-col gap-10 md:gap-16" id="cards" data-page-node-id="nYr6z2j9NzfBwFz4CHujH7">
+    <!-- 卡片 1 -->
+    <div class="feature-card bg-black/20 backdrop-blur-sm rounded-3xl p-6 md:p-10 flex flex-col gap-6" data-page-node-id="jIiALDy74hiylW6vCKQas2">
+      <svg width="40" height="40" viewBox="0 0 256 256" fill="none" data-page-node-id="IZax5ena7eDvBaKhxt9bMY"><path d="M 256 256 L 178 256 C 150.386 256 128 233.614 128 206 L 128 256 L 0 256 L 0 192 C 0 156.654 28.654 128 64 128 C 99.346 128 128 156.654 128 192 L 128 128 L 256 128 Z M 78 0 C 105.614 0 128 22.386 128 50 L 128 0 L 256 0 L 256 64 C 256 99.346 227.346 128 192 128 C 156.654 128 128 99.346 128 64 L 128 128 L 0 128 L 0 0 Z" fill="rgba(255,255,255,0.8)" data-page-node-id="Guat5WZqfwOjFLNOhtF7Vn"/></svg>
+      <h3 class="text-white text-xl md:text-2xl font-medium" data-page-node-id="m9dJ6nYJdb5YkJyICgUAgz">AI 零代码编程 · 轻松不焦虑</h3>
+      <div class="rounded-2xl overflow-hidden bg-black/30" data-page-node-id="7qhalX1AmaOyAANWtQm713">
+        <img src="./img/f1.png" alt="AI 智能任务调度" class="w-full h-auto block" data-page-node-id="pDPSxY7sB1wtTrGr3psjtP" />
+      </div>
+      <p class="text-white/60 font-medium text-sm md:text-base leading-relaxed" data-page-node-id="tdJhUgMjUbxG1LqVFjzTyl">
+        不懂代码也能做开发。美瑶老师手把手带你用自然语言搭建网站、APP 与小程序——把复杂的技术噪音全部剥离，每一步都柔和、安静、直觉化，让你专注往前走，而不是卡在术语里。
+      </p>
+    </div>
+    <!-- 卡片 2 -->
+    <div class="feature-card bg-black/20 backdrop-blur-sm rounded-3xl p-6 md:p-10 flex flex-col gap-6" data-page-node-id="FeXctj0vSm1SrP1cMG60nE">
+      <svg width="40" height="40" viewBox="0 0 256 256" fill="none" data-page-node-id="h1zYqCbQusE6JX8OJx1rwz"><path d="M 256 256 L 178 256 C 150.386 256 128 233.614 128 206 L 128 256 L 0 256 L 0 192 C 0 156.654 28.654 128 64 128 C 99.346 128 128 156.654 128 192 L 128 128 L 256 128 Z M 78 0 C 105.614 0 128 22.386 128 50 L 128 0 L 256 0 L 256 64 C 256 99.346 227.346 128 192 128 C 156.654 128 128 99.346 128 64 L 128 128 L 0 128 L 0 0 Z" fill="rgba(255,255,255,0.8)" data-page-node-id="VU2wh0aaGSBgxixi578dvv"/></svg>
+      <h3 class="text-white text-xl md:text-2xl font-medium" data-page-node-id="v4iFq6P7qe8MjkHd9mKJNi">Vibe Coding · 最温柔的开始方式</h3>
+      <div class="rounded-2xl overflow-hidden bg-black/30" data-page-node-id="TQaCHFio7eV1JDglT3VrZP">
+        <img src="./img/f2.png" alt="Vibe Coding 终端界面" class="w-full h-auto block" data-page-node-id="s9YQzeft9Reias8siwYDxM" />
+      </div>
+      <p class="text-white/60 font-medium text-sm md:text-base leading-relaxed" data-page-node-id="3iV4aLWBvzDf1V6Q5QyS6l">
+        创作的开始应该是自然的，而不是令人生畏的。从一句话的想法出发，AI 帮你把散乱的灵感梳理成清晰的数字作品——零基础轻松上手，下课当天就能做出自己的第一个作品。
+      </p>
+    </div>
+    <!-- 卡片 3 -->
+    <div class="feature-card bg-black/20 backdrop-blur-sm rounded-3xl p-6 md:p-10 flex flex-col gap-6" data-page-node-id="JqsC2g2bcj3zlEomkThHuI">
+      <svg width="40" height="40" viewBox="0 0 256 256" fill="none" data-page-node-id="CBtwFERlFzT2qcihkBrabU"><path d="M 256 256 L 178 256 C 150.386 256 128 233.614 128 206 L 128 256 L 0 256 L 0 192 C 0 156.654 28.654 128 64 128 C 99.346 128 128 156.654 128 192 L 128 128 L 256 128 Z M 78 0 C 105.614 0 128 22.386 128 50 L 128 0 L 256 0 L 256 64 C 256 99.346 227.346 128 192 128 C 156.654 128 128 99.346 128 64 L 128 128 L 0 128 L 0 0 Z" fill="rgba(255,255,255,0.8)" data-page-node-id="OHRjD0mrYFArXDhl7OJhFl"/></svg>
+      <h3 class="text-white text-xl md:text-2xl font-medium" data-page-node-id="vV9P6gz0jBmOeqHpw8U0Qa">AI × 心理学 · 深度不内耗</h3>
+      <div class="rounded-2xl overflow-hidden bg-black/30" data-page-node-id="U9bTmEXCEGE9LrUzYTBKbp">
+        <img src="./img/f3.png" alt="AI × 心理学" class="w-full h-auto block" data-page-node-id="59XGsvPkOAKFwoNedih7C4" />
+      </div>
+      <p class="text-white/60 font-medium text-sm md:text-base leading-relaxed" data-page-node-id="lRZpkeWYG1ORCueswSnQcJ">
+        没有打断，没有杂乱。心理咨询师视角设计的学习节奏，帮你留在当下的任务里，柔化其余一切干扰——直到你真正准备好，再进入下一步。学习不该是消耗，而是滋养。
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // 汉堡菜单
+  function toggleNav() {
+    const wrap = document.getElementById('navWrap');
+    const dd = document.getElementById('dropdown');
+    wrap.classList.toggle('nav-open');
+    const open = wrap.classList.contains('nav-open');
+    dd.classList.toggle('dropdown-open', open);
+    dd.classList.toggle('dropdown-closed', !open);
+  }
+
+  // 卡片入场动画（threshold 0.15，出现后保持）
+  const cards = Array.from(document.querySelectorAll('.feature-card'));
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add('revealed');
+    });
+  }, { threshold: 0.15 });
+  cards.forEach((c) => { revealObs.observe(c); });
+</script>
+<section class="pz-sec" id="voices" data-page-node-id="Woxd9V5ZCPLBspW590l39p">
+  <div class="pz-inner" data-page-node-id="7CN6kcv6ap3HNJ0srU1X3C">
+    <div class="pz-head" data-page-node-id="p825Y2s2l6dSJS35mWKHMI">
+      <div class="pz-kicker" data-page-node-id="xss3r0DsgelP7SVTGlPAow">— Real Voices · 学员真实好评</div>
+      <h2 class="pz-title" data-page-node-id="1XJPgGsY3f982v5rAWFRxf">听过课的<em data-page-node-id="74O0HV6MjkmE8AUO40vPvB">她们</em>，<br data-page-node-id="f1eaF8ugA1ZIIDfDzctMWw"/>怎么说。</h2>
+      <p class="pz-sub" data-page-node-id="cxJBKA7lNvKEBTYbDWhT71">以下为学员与合作伙伴的微信真实反馈截图，原图未删改、不修饰。<br data-page-node-id="zoCZz1uUKI7SbTIiGCgBoV"/>想定制课程或约时间？微信 / 电话 <a class="pz-tel" href="tel:18976573949" data-page-node-id="rKxN7xeNspJ37zagl8vawA">18976573949</a></p>
+    </div>
+    <div class="pz-grid" data-page-node-id="Ch03x2uY7hNhM9xjiL2sfz">
+      <figure class="pz-item" data-page-node-id="shR1o866ctPix7l7EQQBxq">
+        <img src="./img/hp1.png" alt="学员真实好评 1" loading="lazy" data-page-node-id="C05GT0j8YoJO0v6iBAqrq6" />
+        <figcaption class="pz-cap" data-page-node-id="oARzYEd6NJkPGNpWJUfsGf">好评 ①1</figcaption>
+      </figure>
+      <figure class="pz-item" data-page-node-id="s1yGmW9n9DJLdr4eirbqrG">
+        <img src="./img/hp2.png" alt="学员真实好评 2" loading="lazy" data-page-node-id="nj4Gjf9zhgNQYKJgTLkNJq" />
+        <figcaption class="pz-cap" data-page-node-id="XVEvlA3JzVWGasDtEiWmWI">好评 ①2</figcaption>
+      </figure>
+      <figure class="pz-item" data-page-node-id="Tn5e260YvzPJLIe3DHBZOm">
+        <img src="./img/hp3.png" alt="学员真实好评 3" loading="lazy" data-page-node-id="uxZxLAbMHJ1EWtAKtXpnOu" />
+        <figcaption class="pz-cap" data-page-node-id="SMwF1IVHVIHqSjYBnaUOev">好评 ①3</figcaption>
+      </figure>
+    </div>
+  </div>
+  <style>
+  .pz-sec{padding:clamp(72px,9vh,128px) clamp(20px,4vw,56px);position:relative}
+  .pz-inner{max-width:1180px;margin:0 auto}
+  .pz-head{margin-bottom:44px}
+  .pz-kicker{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+  .pz-title{font-family:"Fraunces",Georgia,"Songti SC","STSong",serif;font-weight:300;font-size:clamp(32px,4.6vw,64px);line-height:1.06;letter-spacing:-.02em}
+  .pz-title em{font-style:italic}
+  .pz-sub{margin-top:16px;font-size:15px;line-height:1.7;opacity:.72}
+  .pz-tel{color:inherit;text-decoration:underline;text-underline-offset:3px}
+  .pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .pz-item{position:relative;margin:0;border-radius:16px;overflow:hidden;background:rgba(128,128,128,.06);box-shadow:0 14px 34px -20px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;cursor:zoom-in}
+  .pz-item:hover{transform:translateY(-8px);box-shadow:0 30px 56px -24px rgba(0,0,0,.6)}
+  .pz-item img{width:100%;height:auto;display:block}
+  .pz-cap{position:absolute;left:12px;bottom:12px;font-size:11px;letter-spacing:.06em;color:#fff;background:rgba(0,0,0,.42);padding:5px 11px;border-radius:999px;backdrop-filter:blur(6px);font-family:"JetBrains Mono",monospace}
+  @media(max-width:600px){.pz-grid{grid-template-columns:repeat(2,1fr);gap:12px}.pz-item{border-radius:12px}}
+  </style>
+</section>
+
+</body>
+</html>

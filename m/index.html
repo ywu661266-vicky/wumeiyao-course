@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>美瑶老师 · 个人主页（minimalist-skill 版式）</title>
+<style>
+  /* === 严格遵守 minimalist-skill 协议：白底 / 1px #EAEAEA 边框 / 衬线标题 / 无渐变 / 无玻璃 / 无 emoji / muted pastel === */
+  :root{
+    --bg:#FCFCFA;
+    --surface:#FFFFFF;
+    --ink:#1F1F1D;
+    --muted:#787774;
+    --line:#EAEAEA;
+    --line-soft:rgba(0,0,0,0.06);
+    --serif:Georgia,"Times New Roman","Songti SC",serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+    --pastel-green-bg:#EDF3EC; --pastel-green-tx:#346538;
+    --pastel-blue-bg:#E1F3FE;  --pastel-blue-tx:#1F6C9F;
+    --pastel-yellow-bg:#FBF3DB;--pastel-yellow-tx:#956400;
+    --pastel-red-bg:#FDEBEC;   --pastel-red-tx:#9F2F2D;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px 80px;}
+  section{padding:56px 0;border-bottom:1px solid var(--line);}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:14px;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s cubic-bezier(0.16,1,0.3,1),transform .6s cubic-bezier(0.16,1,0.3,1);}
+    .reveal.in{opacity:1;transform:none;}
+  }
+
+  /* Hero —— 大留白 + 衬线大标题 + 单线分隔 */
+  .hero{padding-top:96px;border-bottom:none;}
+  .hero h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,8vw,76px);line-height:1.06;letter-spacing:-.02em;color:var(--ink);}
+  .hero .role{margin-top:18px;font-size:18px;color:var(--muted);max-width:34em;}
+  .hero .meta{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px;}
+  .tag{font-size:12px;letter-spacing:.08em;padding:5px 12px;border-radius:9999px;background:var(--pastel-green-bg);color:var(--pastel-green-tx);}
+  .hero img.portrait{width:80px;height:80px;border-radius:999px;object-fit:cover;margin-bottom:20px;display:block;border:1px solid var(--line);}
+
+  /* 区块标题 */
+  .sec-title{font-family:var(--serif);font-size:28px;font-weight:700;letter-spacing:-.01em;margin-bottom:28px;}
+
+  /* Bento —— 不对称网格 + 1px 边框 + 8-12px 圆角 */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;}
+  .card{border:1px solid var(--line);border-radius:10px;padding:26px;background:var(--surface);}
+  .card h3{font-family:var(--serif);font-size:20px;font-weight:700;margin-bottom:8px;}
+  .card p{font-size:14px;color:var(--muted);}
+  .card .pill{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:9999px;}
+  .span3{grid-column:span 3;} .span2{grid-column:span 2;} .span4{grid-column:span 4;} .span6{grid-column:span 6;}
+
+  /* 双轨时间轴 —— 用 border-bottom 分隔，无容器盒 */
+  .tl-row{display:grid;grid-template-columns:120px 1fr 1fr;gap:24px;padding:22px 0;border-bottom:1px solid var(--line);align-items:start;}
+  .tl-row:last-child{border-bottom:none;}
+  .tl-year{font-family:var(--mono);font-size:14px;color:var(--muted);}
+  .tl-col h4{font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:4px;}
+  .tl-col p{font-size:13.5px;color:var(--muted);}
+  .tl-col.life h4{color:var(--pastel-yellow-tx);}
+
+  /* 雷达 */
+  .radar-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;}
+  .radar-svg{max-width:340px;width:100%;height:auto;}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;max-width:520px;}
+  .legend span{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+  .legend .d{width:9px;height:9px;border-radius:50%;background:var(--pastel-blue-tx);display:inline-block;}
+
+  /* 好评 —— 卡片 + 1px 边框，关系用 pill */
+  .tests{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .test{border:1px solid var(--line);border-radius:10px;padding:20px 22px;background:var(--surface);}
+  .test .q{font-family:var(--serif);font-size:16px;font-style:italic;line-height:1.55;}
+  .test .who{margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .test .who .rel{font-size:11px;padding:3px 10px;border-radius:9999px;background:var(--pastel-blue-bg);color:var(--pastel-blue-tx);}
+  .test .who .nm{font-size:13px;color:var(--muted);}
+
+  /* 联系 —— 主按钮实心 #111 + 4-6px 圆角 */
+  .channels{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .ch{border:1px solid var(--line);border-radius:10px;padding:22px;background:var(--surface);}
+  .ch h4{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:10px;}
+  .ch .ice{font-size:13px;color:var(--muted);border-left:2px solid var(--pastel-red-tx);padding-left:10px;margin-bottom:14px;}
+  .ch a{display:inline-block;background:var(--ink);color:#fff;font-size:13px;font-weight:600;padding:9px 16px;border-radius:5px;text-decoration:none;transition:transform .2s ease;}
+  .ch a:active{transform:scale(0.98);}
+
+  footer{text-align:center;padding:48px 20px 0;color:var(--muted);font-size:12.5px;}
+
+  @media (max-width:680px){
+    .bento{grid-template-columns:repeat(2,1fr);}
+    .span3,.span2,.span4,.span6{grid-column:span 2;}
+    .tl-row{grid-template-columns:1fr;gap:10px;}
+    .tests,.channels{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <section class="hero reveal">
+    <img class="portrait" src="img/photo.jpg" alt="美瑶老师" />
+    <span class="kicker">Personal Site · 美瑶老师</span>
+    <h1>美瑶老师</h1>
+    <p class="role">AI 讲师、心理咨询师、高级人工智能训练师。在海口带着一群姐姐，从零把 AI 变成趁手的生活工具。</p>
+    <div class="meta">
+      <span class="tag">AI 讲师</span>
+      <span class="tag">心理咨询师</span>
+      <span class="tag">零代码布道者</span>
+      <span class="tag">海南省妇联女性 AI 学习圈</span>
+      <span class="tag">海口</span>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <span class="kicker">01 — About</span>
+    <h2 class="sec-title">我在做的事</h2>
+    <div class="bento">
+      <div class="card span3"><h3>AI 备课搭子</h3><p>用 AI 半小时出课件骨架，剩下时���想怎么讲人话。</p><span class="pill" style="background:var(--pastel-green-bg);color:var(--pastel-green-tx)">课程设计</span></div>
+      <div class="card span3"><h3>心理急救箱</h3><p>把情绪拆成可操作的步骤。焦虑常常是没说清的需求。</p><span class="pill" style="background:var(--pastel-yellow-bg);color:var(--pastel-yellow-tx)">心理学</span></div>
+      <div class="card span2"><h3>零代码实验室</h3><p>会描述需求，就够了。</p><span class="pill" style="background:var(--pastel-blue-bg);color:var(--pastel-blue-tx)">vibe coding</span></div>
+      <div class="card span2"><h3>影像共创</h3><p>每个人都是自己生活的导演。</p><span class="pill" style="background:var(--pastel-red-bg);color:var(--pastel-red-tx)">AI 影像</span></div>
+      <div class="card span2"><h3>海口慢生活</h3><p>骑楼老街散步，慢下来才有灵感。</p><span class="pill" style="background:var(--pastel-green-bg);color:var(--pastel-green-tx)">生活</span></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <span class="kicker">02 — Timeline</span>
+    <h2 class="sec-title">双轨人生</h2>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-year">2019</div><div class="tl-col"><h4>三级心理咨询师</h4><p>先接住情绪，再谈方法。</p></div><div class="tl-col life"><h4>女性读书会</h4><p>一群人互相托着走，比一个人强。</p></div></div>
+      <div class="tl-row"><div class="tl-year">2021</div><div class="tl-col"><h4>高级 AI 训练师</h4><p>相信普通人也能用好 AI。</p></div><div class="tl-col life"><h4>用 AI 写教案</h4><p>半小时出骨架，腾出时间想人话。</p></div></div>
+      <div class="tl-row"><div class="tl-year">2023</div><div class="tl-col"><h4>转型 AI 讲师</h4><p>专讲零基础也能上手的部分。</p></div><div class="tl-col life"><h4>心理学进 AI 课</h4><p>学员卡住，常是怕，不是不会。</p></div></div>
+      <div class="tl-row"><div class="tl-year">2024</div><div class="tl-col"><h4>省妇联学习圈</h4><p>带姐姐们从零搭出第一个网站。</p></div><div class="tl-col life"><h4>海口工作坊</h4><p>看见她们眼睛亮了，值了。</p></div></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <span class="kicker">03 — Skills</span>
+    <h2 class="sec-title">能力雷达</h2>
+    <div class="radar-wrap">
+      <svg class="radar-svg" id="radar" viewBox="0 0 320 320" role="img" aria-label="八项技能雷达图"></svg>
+      <div class="legend" id="legend"></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <span class="kicker">04 — Voices</span>
+    <h2 class="sec-title">学员嘴里的我</h2>
+    <div class="tests">
+      <div class="test"><p class="q">本以为 AI 是年轻人的事，美瑶老师让我敢上手了。</p><div class="who"><span class="rel">学员</span><span class="nm">职场妈妈 · 阿芳</span></div></div>
+      <div class="test"><p class="q">她不讲术语，就教我写朋友圈文案，当天就用上了。</p><div class="who"><span class="rel">学员</span><span class="nm">个体户 · 陈姐</span></div></div>
+      <div class="test"><p class="q">她是我见过最会把焦虑翻译成步骤的人。</p><div class="who"><span class="rel">闺蜜</span><span class="nm">小鹿</span></div></div>
+      <div class="test"><p class="q">59 岁我做出第一个小程序，她鼓掌比我还响。</p><div class="who"><span class="rel">学员</span><span class="nm">退休教师 · 王姨</span></div></div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <span class="kicker">05 — Contact</span>
+    <h2 class="sec-title">来破个冰</h2>
+    <div class="channels">
+      <div class="ch"><h4>微信</h4><div class="ice">破冰：你最近在纠结用哪个 AI 工具？</div><a href="#">加我，备注"来学习圈"</a></div>
+      <div class="ch"><h4>小红书</h4><div class="ice">破冰：想看我用 AI 做的短视频吗</div><a href="#">关注 @美瑶老师</a></div>
+      <div class="ch"><h4>邮箱</h4><div class="ice">破冰：想请我去做一场线下工作坊？</div><a href="#">写需求给我</a></div>
+      <div class="ch"><h4>线下 · 海口</h4><div class="ice">破冰：这周末有空来骑楼喝咖啡吗</div><a href="#">报名下一场</a></div>
+    </div>
+  </section>
+
+  <section class="pz-sec" id="voices">
+  <div class="pz-inner">
+    <div class="pz-head">
+      <div class="pz-kicker">— Real Voices · 学员真实好评</div>
+      <h2 class="pz-title">听过课的<em>她们</em>，<br/>怎么说。</h2>
+      <p class="pz-sub">以下为学员与合作伙伴的微信真实反馈截图，原图未删改、不修饰。<br/>想定制课程或约时间？微信 / 电话 <a class="pz-tel" href="tel:18976573949">18976573949</a></p>
+    </div>
+    <div class="pz-grid">
+      <figure class="pz-item">
+        <img src="./img/hp1.png" alt="学员真实好评 1" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①1</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp2.png" alt="学员真实好评 2" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①2</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp3.png" alt="学员真实好评 3" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①3</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp4.png" alt="学员真实好评 4" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①4</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp5.png" alt="学员真实好评 5" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①5</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp6.png" alt="学员真实好评 6" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①6</figcaption>
+      </figure>
+    </div>
+  </div>
+  <style>
+  .pz-sec{padding:clamp(72px,9vh,128px) clamp(20px,4vw,56px);position:relative}
+  .pz-inner{max-width:1180px;margin:0 auto}
+  .pz-head{margin-bottom:44px}
+  .pz-kicker{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+  .pz-title{font-family:"Fraunces",Georgia,"Songti SC","STSong",serif;font-weight:300;font-size:clamp(32px,4.6vw,64px);line-height:1.06;letter-spacing:-.02em}
+  .pz-title em{font-style:italic}
+  .pz-sub{margin-top:16px;font-size:15px;line-height:1.7;opacity:.72}
+  .pz-tel{color:inherit;text-decoration:underline;text-underline-offset:3px}
+  .pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .pz-item{position:relative;margin:0;border-radius:16px;overflow:hidden;background:rgba(128,128,128,.06);box-shadow:0 14px 34px -20px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;cursor:zoom-in}
+  .pz-item:hover{transform:translateY(-8px);box-shadow:0 30px 56px -24px rgba(0,0,0,.6)}
+  .pz-item img{width:100%;height:auto;display:block}
+  .pz-cap{position:absolute;left:12px;bottom:12px;font-size:11px;letter-spacing:.06em;color:#fff;background:rgba(0,0,0,.42);padding:5px 11px;border-radius:999px;backdrop-filter:blur(6px);font-family:"JetBrains Mono",monospace}
+  @media(max-width:600px){.pz-grid{grid-template-columns:repeat(2,1fr);gap:12px}.pz-item{border-radius:12px}}
+  </style>
+</section>
+
+<footer>
+    本页用 minimalist-skill 的设计协议生成：白底、1px 边框、衬线标题、muted pastel、无渐变无玻璃无 emoji。<br>
+    与「杂志风 D 站」是同一人不同版式——证明换一个设计系统，丢同样材料会生成完全不同的网站。
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var skills=[
+      {name:"AI 工具实操",v:92},{name:"课程设计",v:88},{name:"提示词工程",v:85},
+      {name:"心理学疏导",v:90},{name:"公开演讲",v:82},{name:"社群运营",v:80},
+      {name:"共情倾听 ★",v:95},{name:"把复杂讲简单 ★",v:93}
+    ];
+    var cx=160,cy=160,R=120,n=skills.length;
+    function pt(i,r){var a=(i*360/n-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+    var svg=document.getElementById("radar"),ns="http://www.w3.org/2000/svg";
+    function el(t,a){var e=document.createElementNS(ns,t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+    [0.25,0.5,0.75,1].forEach(function(f){var p=[];for(var i=0;i<n;i++){var q=pt(i,R*f);p.push(q[0]+","+q[1]);}svg.appendChild(el("polygon",{points:p.join(" "),fill:"none",stroke:"#EAEAEA","stroke-width":1}));});
+    for(var i=0;i<n;i++){var p=pt(i,R);svg.appendChild(el("line",{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:"#EAEAEA","stroke-width":1}));var lp=pt(i,R+22);var t=el("text",{x:lp[0],y:lp[1],"font-size":11,fill:"#787774","font-family":"var(--sans)","text-anchor":(lp[0]<cx?"end":"start"),"dominant-baseline":"middle"});t.textContent=skills[i].name;svg.appendChild(t);}
+    var d=[];for(var j=0;j<n;j++){var dp=pt(j,R*skills[j].v/100);d.push(dp[0]+","+dp[1]);}
+    svg.appendChild(el("polygon",{points:d.join(" "),fill:"rgba(31,108,159,0.18)",stroke:"#1F6C9F","stroke-width":2}));
+    skills.forEach(function(s,i){var dp=pt(i,R*s.v/100);svg.appendChild(el("circle",{cx:dp[0],cy:dp[1],r:3,fill:"#1F6C9F"}));});
+    var lg=document.getElementById("legend");
+    skills.forEach(function(s){var sp=document.createElement("span");sp.innerHTML='<i class="d"></i>'+s.name+" · "+s.v;lg.appendChild(sp);});
+  })();
+  (function(){
+    var r=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var items=document.querySelectorAll(".reveal");
+    if(r||!("IntersectionObserver" in window)){items.forEach(function(e){e.classList.add("in");});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:0.12});
+    items.forEach(function(e){io.observe(e);});
+  })();
+</script>
+</body>
+</html>

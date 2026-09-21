@@ -1,310 +1,160 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>7款个人网站风格 · 零代码复刻指南</title>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>个人网站搭建 · 七款风格</title>
 <style>
-  :root{
-    --bg0:#060912; --bg1:#0b1322; --bg2:#0e1a2e;
-    --ink:#EAF0FB; --ink2:#A9B6CE; --ink3:#6F7E98;
-    --red:#E60012; --red2:#FF3344; --red-soft:rgba(230,0,18,.14);
-    --glass:rgba(255,255,255,.055); --glass-b:rgba(255,255,255,.12);
-    --line:rgba(255,255,255,.10);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
-  body{
-    font-family:"Noto Sans SC",system-ui,-apple-system,"PingFang SC",sans-serif;
-    background:
-      radial-gradient(1200px 700px at 12% -8%, rgba(230,0,18,.16), transparent 55%),
-      radial-gradient(900px 600px at 100% 110%, rgba(56,103,180,.18), transparent 60%),
-      linear-gradient(160deg,var(--bg0),var(--bg1) 55%,var(--bg2));
-    color:var(--ink); overflow:hidden;
-  }
-  .deck{position:relative;height:100vh;width:100vw}
-  /* progress */
-  .progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--red),var(--red2));box-shadow:0 0 12px rgba(230,0,18,.6);z-index:50;transition:width .45s ease}
-  /* slide */
-  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
-    padding:7vh 9vw 9vh;max-width:1180px;margin:0 auto;left:0;right:0}
-  .slide.active{display:flex;animation:fade .5s ease}
-  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-  .kicker{font-size:14px;letter-spacing:.32em;color:var(--red2);font-weight:600;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:12px}
-  .kicker::before{content:"";width:30px;height:2px;background:var(--red2);display:inline-block}
-  h1{font-family:"Noto Serif SC",serif;font-weight:900;font-size:clamp(34px,5.4vw,68px);line-height:1.12;letter-spacing:.01em}
-  h2{font-family:"Noto Serif SC",serif;font-weight:700;font-size:clamp(26px,3.6vw,44px);line-height:1.18;margin-bottom:6px}
-  .sub{color:var(--ink2);font-size:clamp(15px,1.7vw,21px);margin-top:18px;line-height:1.7;font-weight:300}
-  .hint{position:fixed;bottom:26px;left:0;right:0;text-align:center;color:var(--ink3);font-size:13px;letter-spacing:.18em;z-index:40}
-  .hint b{color:var(--ink2);font-weight:500}
-  .counter{position:fixed;bottom:24px;right:30px;color:var(--ink3);font-size:13px;letter-spacing:.1em;z-index:40;font-family:"JetBrains Mono",monospace}
-  .counter b{color:var(--red2);font-size:18px}
-  /* reveal steps */
-  .step{opacity:0;transform:translateY(22px);transition:opacity .55s ease, transform .55s cubic-bezier(.2,.7,.2,1);margin-top:22px}
-  .step.show{opacity:1;transform:none}
-  .step:first-child{margin-top:0}
-  /* cards */
-  .grid{display:flex;flex-wrap:wrap;gap:18px}
-  .card{background:var(--glass);border:1px solid var(--glass-b);border-radius:18px;padding:22px 22px;
-    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 50px rgba(0,0,0,.35);flex:1 1 240px;min-width:220px}
-  .card.red{border-color:rgba(230,0,18,.45);background:linear-gradient(180deg,rgba(230,0,18,.12),rgba(230,0,18,.03))}
-  .num{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;
-    background:var(--red);color:#fff;font-weight:700;font-family:"JetBrains Mono",monospace;font-size:15px;margin-bottom:12px;box-shadow:0 6px 18px rgba(230,0,18,.4)}
-  .card h3{font-family:"Noto Serif SC",serif;font-size:20px;font-weight:700;margin-bottom:8px}
-  .card .kw{display:inline-block;font-size:12px;color:var(--red2);background:var(--red-soft);border:1px solid rgba(230,0,18,.3);padding:3px 10px;border-radius:9999px;margin:0 6px 8px 0}
-  .card p{color:var(--ink2);font-size:14px;line-height:1.6;font-weight:300}
-  /* code block */
-  .code{background:#070d18;border:1px solid var(--line);border-radius:16px;padding:22px 24px;font-family:"JetBrains Mono",monospace;
-    font-size:14px;line-height:1.75;color:#cdd8ee;overflow:auto;box-shadow:0 18px 50px rgba(0,0,0,.4);position:relative}
-  .code .cm{color:#5f718e}
-  .code .rd{color:#ff6b78}
-  .code .gn{color:#7ee0a8}
-  .code .bl{color:#74b4ff}
-  .code-head{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-  .dot{width:11px;height:11px;border-radius:50%}
-  .code-head .t{font-size:12px;color:var(--ink3);font-family:"Noto Sans SC";letter-spacing:.08em}
-  .copy{margin-left:auto;font-size:12px;color:var(--ink2);background:rgba(255,255,255,.06);border:1px solid var(--line);
-    padding:5px 12px;border-radius:8px;cursor:pointer;font-family:"Noto Sans SC";transition:.2s}
-  .copy:hover{color:#fff;border-color:var(--red);background:var(--red-soft)}
-  .two{display:flex;gap:26px;align-items:stretch;flex-wrap:wrap}
-  .two>.col{flex:1 1 380px;min-width:320px}
-  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid var(--glass-b);border-radius:9999px;padding:8px 16px;font-size:13px;color:var(--ink2);margin:0 8px 10px 0}
-  .pill b{color:var(--red2);font-family:"JetBrains Mono",monospace}
-  ul.clean{list-style:none;margin-top:8px}
-  ul.clean li{position:relative;padding-left:24px;margin:14px 0;color:var(--ink2);font-size:15px;line-height:1.6;font-weight:300}
-  ul.clean li::before{content:"";position:absolute;left:0;top:9px;width:9px;height:9px;border-radius:3px;background:var(--red);box-shadow:0 0 10px rgba(230,0,18,.6)}
-  ul.clean li b{color:var(--ink);font-weight:600}
-  .qrow{display:flex;align-items:center;gap:24px;flex-wrap:wrap}
-  .qr{width:160px;height:160px;background:#fff;border-radius:16px;padding:10px;flex:0 0 auto;box-shadow:0 14px 40px rgba(0,0,0,.4)}
-  .big{font-family:"Noto Serif SC",serif;font-size:clamp(30px,4.4vw,56px);font-weight:900;line-height:1.2}
-  .big .hl{color:var(--red2)}
-  a.link{color:var(--red2);text-decoration:none;border-bottom:1px dashed rgba(255,51,68,.5)}
-  @media (max-width:720px){.slide{padding:6vh 6vw 10vh}.two>.col{flex:1 1 100%}}
+:root{--ink:#1f2421;--paper:#faf8f4;--line:#e2ddd2;--muted:#6b6f69;--green:#0f3d34;--terra:#b04a2f;--gold:#c9a05a;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px;}
+h1{font-size:26px;font-weight:700;letter-spacing:-.01em;}
+h1 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:6px;}
+section{margin-top:48px;padding-top:32px;border-top:1px solid var(--line);}
+.num{font-family:Georgia,serif;font-size:40px;color:var(--terra);font-weight:700;line-height:1;}
+h2{font-size:21px;margin:8px 0 16px;}
+.cover{position:relative;height:360px;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#fff;margin:14px 0;}
+.cover iframe{position:absolute;top:0;left:0;width:1280px;height:860px;border:0;transform:scale(.40);transform-origin:top left;}
+pre{background:#1f2421;color:#e8e4da;padding:16px 18px;border-radius:8px;overflow-x:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:12px 0;}
+.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0;}
+.steps li{counter-increment:s;position:relative;padding:8px 0 8px 40px;border-bottom:1px dashed var(--line);}
+.steps li::before{content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-size:14px;font-weight:600;margin-top:10px;}
+.btn.g{background:var(--green);}
+table{width:100%;border-collapse:collapse;margin-top:24px;font-size:14px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#f0ece2;font-weight:700;}
 </style>
 </head>
 <body>
-<div class="progress" id="progress"></div>
-<div class="deck" id="deck">
+<div class="wrap">
+<h1>个人网站搭建 · 七款风格<small>同一份讲师资料，七条零代码路线，七种气质</small></h1>
 
-  <!-- 1 COVER -->
-  <section class="slide active">
-    <div class="kicker">零代码 · AI 生成 · 一键汇总</div>
-    <h1>7 款个人网站风格<br/><span style="color:var(--red2)">零代码复刻指南</span></h1>
-    <div class="sub step">用一句话让 AI 生成网站，再用一句话把 7 款汇总成可分享的在线作品集。<br/>本指南教你「怎么向 AI 发指令」，让别人也能复刻。</div>
-    <div class="sub step" style="color:var(--ink3);font-size:14px">主讲：美瑶老师 · AI 讲师 × 心理咨询师 × 高级人工智能训练师</div>
-  </section>
+<!-- 01 -->
+<section>
+<div class="num">01</div>
+<h2>杂志风个人站 —— 提示词</h2>
+<div class="cover"><iframe src="./d/index.html" title="杂志风"></iframe></div>
+<pre>请帮我做一个单文件 HTML 个人网站（CSS/JS 全内联，适配手机）。风格是【杂志编辑风 / editorial】：
 
-  <!-- 2 WHAT YOU LEARN -->
-  <section class="slide">
-    <div class="kicker">你会收获</div>
-    <h2>跟着做，你能带走这四样</h2>
-    <div class="grid" style="margin-top:26px">
-      <div class="card step"><div class="num">1</div><h3>7 套风格模板</h3><p>杂志风 / 极简风 / 社交名片 / Viktor Oddy / VortxLab / 太空液态玻璃 / Drift calm，直接套用。</p></div>
-      <div class="card step"><div class="num">2</div><h3>复刻提示词</h3><p>每款都附「发给 AI 的指令」，复制改几个词就能生成同款。</p></div>
-      <div class="card step"><div class="num">3</div><h3>汇总成作品集</h3><p>一句指令，让 AI 把 N 款打包成一个网页作品集并部署分享。</p></div>
-      <div class="card red step"><div class="num">4</div><h3>避坑铁律</h3><p>换图不删效果、原样封装、成品不留内部词——少走 90% 的弯路。</p></div>
-    </div>
-  </section>
+【配色】主色深墨绿 #0f1f1a，中墨绿 #214a3e，底色奶油纸 #f5efe6，深纸 #ebe3d5，烧赭强调 #b04a2f；分隔线用 rgba(15,31,26,.18) 的 1px 细线。不要蓝、不要紫、不要默认蓝。
 
-  <!-- 3 OVERVIEW -->
-  <section class="slide">
-    <div class="kicker">7 款总览</div>
-    <h2>先认识这 7 款长什么样</h2>
-    <div class="step grid" style="margin-top:24px">
-      <div class="card" style="flex:1 1 240px"><div class="num">01</div><h3>杂志风</h3><span class="kw">编辑感</span><span class="kw">大图刊头</span><p>适合内容创作者，有版面节奏感。</p></div>
-      <div class="card" style="flex:1 1 240px"><div class="num">02</div><h3>极简风</h3><span class="kw">留白</span><span class="kw">克制</span><p>职业照头像 + 大字，适合个人品牌 / 简历。</p></div>
-      <div class="card" style="flex:1 1 240px"><div class="num">03</div><h3>社交名片</h3><span class="kw">一张卡</span><span class="kw">联系入口</span><p>数字名片，适合讲师 / 嘉宾页。</p></div>
-      <div class="card" style="flex:1 1 240px"><div class="num">04</div><h3>Viktor Oddy 风</h3><span class="kw">深色编辑</span><span class="kw">视差彩蛋</span><p>鼠标跟随闪照片，有作品集的讲师首选。</p></div>
-    </div>
-    <div class="step grid" style="margin-top:18px">
-      <div class="card red" style="flex:1 1 240px"><div class="num">05</div><h3>VortxLab 风</h3><span class="kw">纯黑</span><span class="kw">八边形按钮</span><span class="kw">蝴蝶视频</span><p>科技人设，AI / 极客感。</p></div>
-      <div class="card" style="flex:1 1 240px"><div class="num">06</div><h3>太空液态玻璃</h3><span class="kw">React</span><span class="kw">液态玻璃</span><span class="kw">未来感</span><p>适合产品 / 作品集，质感拉满。</p></div>
-      <div class="card" style="flex:1 1 240px"><div class="num">07</div><h3>Drift calm</h3><span class="kw">奶油色</span><span class="kw">大图竖排</span><span class="kw">治愈</span><p>慢动作人像视频，心理 / 生活博主。</p></div>
-    </div>
-  </section>
+【字体】大标题 Fraunces（衬线，可 italic 强调），中文 Noto Serif SC，元数据 JetBrains Mono；标题必须用衬线，禁用 Inter 当大标题。
 
-  <!-- 4 METHOD -->
-  <section class="slide">
-    <div class="kicker">核心方法论</div>
-    <h2>三步，从一句话到作品集</h2>
-    <ul class="clean">
-      <li class="step"><b>第 1 步 · 描述效果：</b>把想要的风格、配色、交互用自然语言告诉 AI（不用会写代码）。</li>
-      <li class="step"><b>第 2 步 · AI 生成单文件 HTML：</b>AI 输出一个 .html 文件，双击就能在浏览器打开，不依赖任何服务器。</li>
-      <li class="step"><b>第 3 步 · 让 AI 汇总成汇报：</b>把做好的几款一起发给 AI，让它打包成一个网页作品集并部署分享。</li>
-    </ul>
-    <div class="sub step" style="color:var(--ink3);font-size:14px">关键认知：你不是在「写网站」，是在「用指令指挥 AI 写网站」。</div>
-  </section>
+【背景】body 加一层 SVG feTurbulence 纸纹噪点（opacity .35，mix-blend-mode multiply），老书纸质感。
 
-  <!-- 5 SINGLE STYLE PROMPT TEMPLATE -->
-  <section class="slide">
-    <div class="kicker">单款生成 · 指令模板</div>
-    <h2>发给 AI 的「通用款式指令」</h2>
-    <div class="code step">
-      <div class="code-head"><span class="dot" style="background:#ff5f56"></span><span class="dot" style="background:#ffbd2e"></span><span class="dot" style="background:#27c93f"></span><span class="t">发给 AI 的指令（复制改 【】 即可）</span><span class="copy" data-copy="tpl-single">复制</span></div>
-<pre id="tpl-single">请帮我做一个<span class="rd">单文件 HTML</span> 个人网站，风格是 <span class="bl">【风格名，如 太空液态玻璃】</span>。
+【结构】分 5 章节（Hero 大标题 / 关于 / 能力 / 学员好评 / 联系），章间 1px 细线分隔，大量留白。
 
-要求：
-1. 双击文件就能打开，<span class="gn">不依赖本地服务器</span>；
-2. 主视觉：<span class="bl">【描述，如 纯黑背景 + 蝴蝶慢动作视频】</span>；
-3. 配色：<span class="bl">【如 黑 + 中国红】</span>；
-4. 交互：<span class="bl">【如 鼠标跟随闪照片、滚动视差】</span>；
-5. 把 <span class="bl">【xxx】</span> 换成我真实的素材（图片 / 视频路径）。</pre>
-    </div>
-    <div class="sub step" style="color:var(--ink3);font-size:14px">要点：把【】里的占位词换成你的需求，其余原样发，AI 就能出同款。</div>
-  </section>
+【动效】IntersectionObserver 滚动揭示（translateY 24px→0 + 透明度）。
 
-  <!-- 6 REAL EXAMPLES -->
-  <section class="slide">
-    <div class="kicker">真实案例 · 一句句式</div>
-    <h2>这三款，当初就是这么说的</h2>
-    <div class="grid" style="margin-top:24px">
-      <div class="card step"><div class="num">05</div><h3>VortxLab 风</h3><p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#cdd8ee">「你是一个网页生成器，生成单文件 HTML，<span class="rd">八边形切角按钮</span>，背景放一段慢动作视频，<span class="gn">要所有人都能打开</span>。」</p></div>
-      <div class="card step"><div class="num">06</div><h3>太空液态玻璃</h3><p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#cdd8ee">「请帮我做一个单文件 HTML，用 <span class="rd">React + framer-motion</span>，<span class="bl">window.Motion = window.Motion || window.FramerMotion</span>，液态玻璃质感，Instrument Serif 标题。」</p></div>
-      <div class="card red step"><div class="num">07</div><h3>Drift calm</h3><p style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#cdd8ee">「请帮我做一个 Drift calm 风单文件 HTML，<span class="rd">用我做出的效果</span>（视频配图在 XX 目录），<span class="bl">原样封装只改路径</span>，不要重新设计。」</p></div>
-    </div>
-    <div class="sub step" style="color:var(--ink3);font-size:14px">看出规律了吗：说清「风格名 + 关键视觉 + 必须保留的约束」三段就够。</div>
-  </section>
+【禁止】渐变大色块、玻璃拟态、emoji 堆砌。
 
-  <!-- 7 AGGREGATION (THE KEY) -->
-  <section class="slide">
-    <div class="kicker">关键 · 怎么汇总</div>
-    <h2>把 7 款打包成一个作品集</h2>
-    <div class="code step">
-      <div class="code-head"><span class="dot" style="background:#ff5f56"></span><span class="dot" style="background:#ffbd2e"></span><span class="dot" style="background:#27c93f"></span><span class="t">汇总指令（复制改数量即可）</span><span class="copy" data-copy="tpl-agg">复制</span></div>
-<pre id="tpl-agg">帮我做一份<span class="rd">在线汇报</span>，把我做好的个人网站风格汇总成
-一个网页作品集。要求：
-1. 每款用 <span class="bl">iframe 内嵌可运行的实例</span>；
-2. 每款配一个 <span class="rd">「📘 制作教程 / SOP」</span> 按钮，
-   点开是该款的提示词 + 复刻步骤；
-3. 整体 <span class="bl">深蓝黑底色 + 中国红点缀 + 玻璃拟态</span>；
-4. 顶部放 7 款的总览和对比；
-5. <span class="gn">可直接部署、生成分享链接，所有人都能打开</span>。</pre>
-    </div>
-    <div class="sub step">AI 会产出：一个总览页 + 每款的实例 + 每款的教程页，再帮你部署成链接。</div>
-    <div class="sub step" style="color:var(--red2);font-weight:500">→ 这就是你现在看到的这份汇报是怎么来的：一句话，让 AI 汇总。</div>
-  </section>
+以下是我的个人资料：
+[贴自己的姓名 / 身份 / 介绍 / 能力标签 / 学员好评 / 联系方式]</pre>
+<a class="btn g" href="./d/index.html" target="_blank">↗ 打开杂志风实例</a>
+</section>
 
-  <!-- 8 IRON RULES -->
-  <section class="slide">
-    <div class="kicker">复刻铁律</div>
-    <h2>四条规矩，少走 90% 弯路</h2>
-    <ul class="clean">
-      <li class="step"><b>换素材 ≠ 删效果：</b>换图 / 换文案时，原排版、交互、动效一律保留，绝不顺手删。</li>
-      <li class="step"><b>「我要一模一样」= 原样封装：</b>只改引用路径，不擅自变体、不本地化改造。</li>
-      <li class="step"><b>成品不留内部词：</b>文件里绝不出现「给领导 / 给学员 / 演示用 / 占位」等暴露内部语境的词。</li>
-      <li class="step"><b>封装旧站要把资产一起拷：</b>视频 / 图片 / 字体等二进制必须一并复制，否则只剩静帧。</li>
-    </ul>
-  </section>
+<!-- 02 -->
+<section>
+<div class="num">02</div>
+<h2>极简编辑风个人站 —— minimalist-skill（已装，最稳）</h2>
+<div class="cover"><iframe src="./m/index.html" title="极简风"></iframe></div>
+<ol class="steps">
+<li>在 WorkBuddy「技能」里导入 <b>minimalist-skill</b>（SKILL.md 放入 skills 目录，刷新启用）</li>
+<li>对话里说："<b>用 minimalist-skill 做我的个人网站</b>"</li>
+<li>贴上自己的资料，生成同款（白底 / 1px 线 / 衬线 / 无渐变 / 无 emoji）</li>
+</ol>
+<a class="btn g" href="./m/index.html" target="_blank">↗ 打开极简风实例</a>
+</section>
 
-  <!-- 9 DEPLOY & SHARE -->
-  <section class="slide">
-    <div class="kicker">部署与分享</div>
-    <h2>生成后，怎么发出去</h2>
-    <div class="two step">
-      <div class="col">
-        <div class="qrow">
-          <div class="qr" id="qr"></div>
-          <div>
-            <div class="pill">单文件 <b>HTML</b> 双击即开</div><br/>
-            <div class="pill">汇总页 <b>部署</b> 得分享链接</div><br/>
-            <div class="pill">管理入口 <b>设置-数据管理-我发布的应用</b></div>
-          </div>
-        </div>
-        <div class="sub" style="margin-top:18px">扫码看真实 7 款在线效果（汇总页已部署）：<br/><a class="link" href="https://835e387cf95a45a4a5101e0f05a69f7a.app.codebuddy.work" target="_blank">835e387cf95a45a4a5101e0f05a69f7a.app.codebuddy.work</a></div>
-      </div>
-      <div class="col">
-        <ul class="clean">
-          <li><b>给别人复刻：</b>把本指南里的「指令模板」发给他，改【】即可。</li>
-          <li><b>给自己留档：</b>每款保存一个 .html + 一个教程页，下次直接复用。</li>
-          <li><b>分享作品集：</b>部署后把链接发群里 / 放进简历，所有人都能打开。</li>
-        </ul>
-      </div>
-    </div>
-  </section>
+<!-- 03 -->
+<section>
+<div class="num">03</div>
+<h2>数字生活策展人（社交名片）—— 灵感库一键同款</h2>
+<div class="cover"><iframe src="./c/index.html" title="社交名片"></iframe></div>
+<ol class="steps">
+<li>WorkBuddy 点「更多」</li>
+<li>点「灵感」</li>
+<li>搜索「数字生活策展人」（搜不到搜"个人名片 / 社交名片"）</li>
+<li>点「一键同款」</li>
+<li>粘贴自己的资料（身份 / 爱好 / 生活化数据 / 时间轴 / 技能 / 朋友评价 / 联系方式）</li>
+<li>生成 → 预览 → 导出</li>
+</ol>
+<a class="btn g" href="./c/index.html" target="_blank">↗ 打开我的社交名片实例</a>
+</section>
 
-  <!-- 10 END -->
-  <section class="slide">
-    <div class="kicker">现在就试</div>
-    <div class="big">选一款风格，<br/>把<span class="hl">提示词</span>发给 AI，<br/>你就有了自己的网站。</div>
-    <div class="sub step" style="margin-top:28px;color:var(--ink2)">7 款已就绪，汇总页已上线。下一步：挑一款，复制指令，发出去。</div>
-    <div class="sub step" style="color:var(--ink3);font-size:14px">—— 美瑶老师 · 自贸她创 · 女性 AI 学习圈进阶班</div>
-  </section>
+<!-- 04 -->
+<section>
+<div class="num">04</div>
+<h2>Viktor Oddy 风个人站 —— 设计提示词复刻（第4款）</h2>
+<div class="cover"><iframe src="./v/index.html" title="Viktor Oddy 风"></iframe></div>
+<ol class="steps">
+<li>这条提示词来自「每天可免费 Copy 一次」的高端设计提示词库（Viktor Oddy / Vortex Studio 同款视觉）</li>
+<li>它原本是写给 AI 编程工具（React + Vite + Tailwind）的；我把它还原成<b>单文件 HTML</b>（与前面三款一致，可直接部署、零代码）</li>
+<li>套用你（小沅老师）的资料：Hero / 跑马灯 / 好评视差 / 双定价卡 / 好评轮播 / 项目墙 / 合作鼠标轨迹 / 底部悬浮导航</li>
+</ol>
+<a class="btn g" href="./v/index.html" target="_blank">↗ 打开 Viktor Oddy 风实例</a>
+<a class="btn" href="./v/教程.html" target="_blank">📘 第4款制作教程 / SOP（提示词+别人操作）</a>
+</section>
+
+<!-- 05 -->
+<section>
+<div class="num">05</div>
+<h2>VortxLab 风个人站 —— 黑底沉浸 / 八边形切角按钮（第5款）</h2>
+<div class="cover"><iframe src="./v5/index.html" title="VortxLab 风"></iframe></div>
+<ol class="steps">
+<li>这条提示词是 VortxLab 风格（纯黑沉浸 + 全屏背景视频 + 八边形切角按钮 + Inter / Noto Sans SC）</li>
+<li>已还原成<b>单文件 HTML</b>（CSS / JS 全内联，双击即开、零代码、可部署）</li>
+<li>套用你的资料：顶部导航 / 左侧竖栏头像 / 居中三行主标题 / 底部三栏（简介 + 行动号召 + 社交圆钮）</li>
+</ol>
+<a class="btn g" href="./v5/index.html" target="_blank">↗ 打开 VortxLab 风实例</a>
+<a class="btn" href="./v5/教程.html" target="_blank">📘 第5款制作教程 / SOP（提示词+别人操作）</a>
+</section>
+
+<!-- 06 -->
+<section>
+<div class="num">06</div>
+<h2>太空液态玻璃个人站 —— React + Framer Motion（第6款）</h2>
+<div class="cover"><iframe src="./v6/index.html" title="太空液态玻璃风"></iframe></div>
+<ol class="steps">
+<li>这条提示词是「太空液态玻璃」风格（纯黑 + 全屏背景视频 + 玻璃拟态导航/卡片/按钮 + 标题逐词模糊入场）</li>
+<li>用 React 18 + Framer Motion 写成<b>单文件 HTML</b>（CDN 引 react / babel / framer-motion，双击即开、零构建、可部署）</li>
+<li>套用你的资料：Hero（导航胶囊 / 逐词标题 / 副标 / 双主按钮 / 两张数据卡 / 合作伙伴）＋ Capabilities（双视频 / 三张能力卡）</li>
+</ol>
+<a class="btn g" href="./v6/index.html" target="_blank">↗ 打开太空液态玻璃风实例</a>
+<a class="btn" href="./v6/教程.html" target="_blank">📘 第6款制作教程 / SOP（提示词+别人操作）</a>
+</section>
+
+<!-- 07 -->
+<section>
+<div class="num">07</div>
+<h2>Drift calm 风个人站 —— 零依赖单文件落地页（第7款）</h2>
+<div class="cover"><iframe src="./v7/index.html" title="Drift calm 风"></iframe></div>
+<ol class="steps">
+<li>这条提示词是「Drift calm」风格（首屏视频/头像 + 白色胶囊导航 + 汉堡变X + 奶油色关于区叠盖 + 深色特性区左栏 sticky + 三张玻璃卡右滑入 + 滚动高亮导航）</li>
+<li>前一版分享失败原因：引用了本机绝对路径的视频/配图，部署后别人打不开。这一版已把<b>原版素材（首屏视频 + 三张特性卡配图 + 证件照）原样封装进网站</b>、路径改为相对引用，保留 100% 原效果，双击即可分享</li>
+<li>套用你的资料：Hero 大标题两行（第二行"内耗与焦虑"用衬线斜体）+ 关于区 Calm/Amplified 品牌 + 特性区三张能力卡</li>
+</ol>
+<a class="btn g" href="./v7/index.html" target="_blank">↗ 打开 Drift calm 风实例</a>
+<a class="btn" href="./v7/教程.html" target="_blank">📘 第7款制作教程 / SOP（提示词+别人操作）</a>
+</section>
+
+<!-- 对比 -->
+<section style="border-top:3px solid var(--green)">
+<h2>七款对比</h2>
+<table>
+<tr><th>款式</th><th>路线</th><th>稳不稳</th><th>适合谁</th><th>实例</th></tr>
+<tr><td>杂志风</td><td>提示词</td><td>同风格（~85% 像）</td><td>想显厚度 / 文艺</td><td><a href="./d/index.html" target="_blank">打开</a></td></tr>
+<tr><td>极简风</td><td>minimalist-skill（已装）</td><td>最稳，同族</td><td>想显专业 / 干净</td><td><a href="./m/index.html" target="_blank">打开</a></td></tr>
+<tr><td>社交名片</td><td>灵感库一键同款</td><td>同模板同款</td><td>破冰 / 社群 / 有人味</td><td><a href="./c/index.html" target="_blank">打开</a></td></tr>
+<tr><td>Viktor Oddy 风</td><td>设计提示词复刻</td><td>同视觉（动效 + 跑马灯 + 轮播）</td><td>想显高级 / 作品感</td><td><a href="./v/index.html" target="_blank">打开</a></td></tr>
+<tr><td>VortxLab 风</td><td>设计提示词复刻</td><td>同视觉（黑底沉浸 + 视频 + 切角钮）</td><td>想显酷感 / 沉浸 / 国际范</td><td><a href="./v5/index.html" target="_blank">打开</a></td></tr>
+<tr><td>太空液态玻璃</td><td>设计提示词（React + Framer Motion）</td><td>同视觉（逐词模糊 + 玻璃拟态 + 视频沉浸）</td><td>想显未来感 / 沉浸 / 高级</td><td><a href="./v6/index.html" target="_blank">打开</a></td></tr>
+<tr><td>Drift calm 风</td><td>设计提示词（零依赖单文件）</td><td>同视觉（汉堡变X + 卡右滑入 + 左栏sticky + 滚动高亮）</td><td>想显温柔 / 沉浸 / 故事感</td><td><a href="./v7/index.html" target="_blank">打开</a></td></tr>
+</table>
+</section>
 
 </div>
-
-<div class="hint">点击任意处 / 按 <b>→</b> 翻页（段落会逐条出现） · 按 <b>←</b> 返回</div>
-<div class="counter"><b id="cur">1</b> / <span id="tot">10</span></div>
-
-<script>
-(function(){
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
-  var total = slides.length;
-  var idx = 0;
-  var revealed = []; // per slide revealed count
-  for(var i=0;i<total;i++) revealed.push(0);
-  document.getElementById('tot').textContent = total;
-
-  function stepsOf(s){ return Array.prototype.slice.call(s.querySelectorAll('.step')); }
-
-  function render(){
-    slides.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
-    var steps = stepsOf(slides[idx]);
-    steps.forEach(function(st,k){ st.classList.toggle('show', k < revealed[idx]); });
-    document.getElementById('cur').textContent = idx+1;
-    document.getElementById('progress').style.width = ((idx)/(total-1)*100) + '%';
-  }
-
-  function next(){
-    var steps = stepsOf(slides[idx]);
-    if(revealed[idx] < steps.length){ revealed[idx]++; render(); return; }
-    if(idx < total-1){ idx++; render(); }
-  }
-  function prev(){
-    if(revealed[idx] > 0){ revealed[idx]--; render(); return; }
-    if(idx > 0){ idx--; revealed[idx] = stepsOf(slides[idx]).length; render(); }
-  }
-
-  document.addEventListener('keydown', function(e){
-    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); next(); }
-    else if(e.key==='ArrowLeft'||e.key==='PageUp'){ e.preventDefault(); prev(); }
-    else if(e.key==='Home'){ idx=0; revealed=[]; for(var i=0;i<total;i++)revealed.push(0); render(); }
-  });
-  document.getElementById('deck').addEventListener('click', function(e){
-    if(e.target.closest('.copy')) return; // 复制按钮不翻页
-    next();
-  });
-
-  // copy buttons
-  document.querySelectorAll('.copy').forEach(function(btn){
-    btn.addEventListener('click', function(e){
-      e.stopPropagation();
-      var id = btn.getAttribute('data-copy');
-      var el = document.getElementById(id);
-      var txt = el.innerText;
-      navigator.clipboard.writeText(txt).then(function(){
-        var old = btn.textContent; btn.textContent='已复制 ✓';
-        setTimeout(function(){ btn.textContent=old; }, 1400);
-      });
-    });
-  });
-
-  // 真实可扫码二维码：用公开 QR 图片服务生成（在线演示时可用；链接文字始终兜底）
-  (function(){
-    var box = document.getElementById('qr');
-    var url = 'https://835e387cf95a45a4a5101e0f05a69f7a.app.codebuddy.work';
-    var img = document.createElement('img');
-    img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=0&color=0b1322&bgcolor=ffffff&data=' + encodeURIComponent(url);
-    img.alt = '扫码看 7 款在线效果';
-    img.style.width = '100%'; img.style.height = '100%'; img.style.borderRadius = '8px'; img.style.display = 'block';
-    img.onerror = function(){ box.innerHTML = '<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;color:#0b1322;padding:8px;line-height:1.4">二维码加载失败<br/>请用下方链接</div>'; };
-    box.appendChild(img);
-  })();
-
-  render();
-})();
-</script>
 </body>
 </html>

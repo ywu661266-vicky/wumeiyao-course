@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>美瑶老师 · 数字生活策展人</title>
+<style>
+  :root{
+    --paper:#FBF7F0;
+    --paper-2:#F3ECDD;
+    --ink:#1B2A24;
+    --green:#1F3D32;
+    --green-soft:#33614F;
+    --amber:#E0A23B;
+    --amber-deep:#C5821F;
+    --sand:#EFE6D6;
+    --line:rgba(31,61,50,0.12);
+    --line-2:rgba(31,61,50,0.20);
+    --shadow:0 18px 40px -24px rgba(31,61,50,0.45);
+    --r:20px;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --serif:Georgia,"Times New Roman","Songti SC","STSong",serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.65;
+    background-image:
+      radial-gradient(120% 80% at 90% -10%, rgba(224,162,59,0.10), transparent 55%),
+      radial-gradient(100% 70% at -10% 110%, rgba(31,61,50,0.08), transparent 55%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 96px;}
+  section{padding:64px 0;border-bottom:1px solid var(--line);}
+  .sec-no{
+    font-family:var(--serif);
+    font-size:13px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--amber-deep);font-weight:700;display:block;margin-bottom:6px;
+  }
+  .sec-title{
+    font-family:var(--serif);font-size:30px;font-weight:700;color:var(--green);
+    letter-spacing:.02em;margin-bottom:4px;
+  }
+  .sec-sub{font-size:14px;color:var(--green-soft);opacity:.85;margin-bottom:30px;}
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease;}
+    .reveal.in{opacity:1;transform:none;}
+  }
+
+  /* Hero */
+  .hero{padding-top:72px;text-align:left;border-bottom:none;}
+  .hero .tagline{
+    display:inline-block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--green-soft);border:1px solid var(--line-2);border-radius:999px;
+    padding:6px 14px;margin-bottom:22px;background:rgba(255,255,255,.4);
+  }
+  .hero h1{
+    font-family:var(--serif);font-size:clamp(34px,9vw,56px);line-height:1.12;
+    color:var(--green);font-weight:700;letter-spacing:-.01em;
+  }
+  .hero h1 .amber{color:var(--amber-deep);}
+  .hero .slogan{
+    margin-top:22px;font-size:19px;color:var(--ink);font-weight:500;
+    border-left:3px solid var(--amber);padding-left:14px;max-width:30em;
+  }
+  .vibes{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;}
+  .vibe{
+    font-size:13px;padding:7px 14px;border-radius:999px;cursor:default;
+    background:var(--sand);color:var(--green);border:1px solid transparent;
+    transition:transform .25s ease,background .25s ease;
+  }
+  .vibe:hover,.vibe.on{background:var(--amber);color:#fff;transform:translateY(-2px);}
+  .avatar{
+    width:84px;height:84px;border-radius:24px;margin-bottom:26px;
+    object-fit:cover;display:block;
+    box-shadow:var(--shadow);
+  }
+
+  /* Stats */
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .stat{
+    background:var(--sand);border-radius:var(--r);padding:20px 16px;text-align:center;
+    border:1px solid var(--line);
+  }
+  .stat .num{font-family:var(--serif);font-size:38px;font-weight:700;color:var(--green);line-height:1;}
+  .stat .num small{font-size:16px;color:var(--amber-deep);margin-left:2px;}
+  .stat .lab{font-size:13px;color:var(--green-soft);margin-top:8px;}
+
+  /* Timeline */
+  .tl{position:relative;margin-top:10px;}
+  .tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--line);transform:translateX(-50%);}
+  .tl-row{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-bottom:30px;position:relative;}
+  .tl-node{position:absolute;left:50%;top:8px;width:14px;height:14px;border-radius:50%;background:var(--amber);border:3px solid var(--paper);transform:translateX(-50%);box-shadow:0 0 0 2px var(--amber-deep);}
+  .tl-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;box-shadow:0 10px 24px -20px rgba(31,61,50,.5);}
+  .tl-card .yr{font-family:var(--serif);font-size:13px;color:var(--amber-deep);font-weight:700;letter-spacing:.1em;}
+  .tl-card h4{font-size:16px;color:var(--green);margin:4px 0 4px;}
+  .tl-card p{font-size:13.5px;color:var(--green-soft);}
+  .tl-card.life{background:linear-gradient(160deg,#fff,var(--paper-2));}
+  .tl-card.life h4{color:var(--amber-deep);}
+  .tl-row .left{text-align:right;}
+  .tl-row .right{padding-top:0;}
+
+  /* Bento */
+  .bento{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .cell{
+    border-radius:var(--r);padding:20px;min-height:150px;color:#fff;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;box-shadow:var(--shadow);
+  }
+  .cell .kicker{font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.85;}
+  .cell h4{font-family:var(--serif);font-size:20px;margin:4px 0 6px;font-weight:700;}
+  .cell .note{font-size:13px;opacity:.92;line-height:1.5;}
+  .cell .emoji{position:absolute;top:14px;right:16px;font-size:30px;opacity:.9;}
+  .c1{background:linear-gradient(150deg,#1F3D32,#0f2820);}
+  .c2{background:linear-gradient(150deg,#C5821F,#8a5a13);}
+  .c3{background:linear-gradient(150deg,#33614F,#1F3D32);}
+  .c4{background:linear-gradient(150deg,#E0A23B,#b9791f);}
+  .c5{background:linear-gradient(150deg,#2E5446,#163025);}
+  .c6{background:linear-gradient(150deg,#9c6b2e,#5e3f18);}
+  .cell.tall{grid-row:span 2;}
+
+  /* Radar */
+  .radar-wrap{display:flex;flex-direction:column;align-items:center;gap:18px;}
+  .radar-svg{max-width:320px;width:100%;height:auto;}
+  .radar-legend{display:flex;flex-wrap:wrap;gap:8px 14px;justify-content:center;max-width:420px;}
+  .radar-legend span{font-size:12.5px;color:var(--green-soft);display:flex;align-items:center;gap:6px;}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--amber);display:inline-block;}
+
+  /* Testimonials */
+  .tests{display:flex;flex-direction:column;gap:14px;}
+  .test{
+    background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;position:relative;
+    box-shadow:0 12px 28px -22px rgba(31,61,50,.5);
+  }
+  .test .quote{font-size:15.5px;color:var(--ink);font-family:var(--serif);font-style:italic;}
+  .test .who{margin-top:10px;display:flex;align-items:center;gap:10px;}
+  .test .rel{font-size:12px;background:var(--sand);color:var(--green);padding:4px 10px;border-radius:999px;font-weight:600;}
+  .test .name{font-size:13px;color:var(--green-soft);}
+  .test::before{content:"\201C";position:absolute;top:-6px;left:12px;font-family:var(--serif);font-size:52px;color:var(--amber);opacity:.35;}
+
+  /* Contact */
+  .channels{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .ch{
+    background:var(--sand);border:1px solid var(--line);border-radius:16px;padding:18px;
+    transition:transform .25s ease;
+  }
+  .ch:hover{transform:translateY(-3px);}
+  .ch .ic{font-size:24px;}
+  .ch h4{font-size:16px;color:var(--green);margin:6px 0 8px;}
+  .ch .ice{font-size:13px;color:var(--green-soft);background:#fff;border-radius:10px;padding:8px 10px;margin-bottom:10px;}
+  .ch .cta{
+    display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--green);
+    padding:8px 14px;border-radius:999px;text-decoration:none;
+  }
+  .ch .cta:hover{background:var(--amber-deep);}
+
+  footer{text-align:center;padding:40px 20px 60px;color:var(--green-soft);font-size:13px;}
+  footer .dotline{width:40px;height:3px;background:var(--amber);border-radius:3px;margin:0 auto 18px;}
+
+  @media (max-width:560px){
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .tl::before{left:14px;}
+    .tl-row{grid-template-columns:1fr;gap:0;padding-left:38px;}
+    .tl-node{left:14px;}
+    .tl-row .left{text-align:left;}
+    .bento{grid-template-columns:1fr;}
+    .cell.tall{grid-row:auto;}
+    .channels{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 1 HERO -->
+  <section class="hero reveal">
+    <img class="avatar" src="img/photo.jpg" alt="美瑶老师" />
+    <span class="tagline">数字生活策展人 · 交友向</span>
+    <h1>美瑶老师<br><span class="amber">AI 讲师</span> × 心理咨询师<br>× 零代码布道者</h1>
+    <p class="slogan">帮你把 AI 变成生活里趁手的工具，而不是焦虑的来源。温柔一点，也能学得会。</p>
+    <div class="vibes">
+      <span class="vibe">#温柔有力</span>
+      <span class="vibe">#心理学视角</span>
+      <span class="vibe">#零基础友好</span>
+      <span class="vibe">#海南海口</span>
+      <span class="vibe">#女性成长</span>
+    </div>
+  </section>
+
+  <!-- 2 STATS -->
+  <section class="reveal">
+    <span class="sec-no">02 — Stats</span>
+    <h2 class="sec-title">生活账本</h2>
+    <p class="sec-sub">不是 KPI，是活过的证据。</p>
+    <div class="stats">
+      <div class="stat"><div class="num">500<small>+</small></div><div class="lab">带过的学员</div></div>
+      <div class="stat"><div class="num">200<small>+</small></div><div class="lab">熬过的课件夜</div></div>
+      <div class="stat"><div class="num">12<small>盆</small></div><div class="lab">养着的多肉</div></div>
+      <div class="stat"><div class="num">800<small>杯</small></div><div class="lab">手冲咖啡总产出</div></div>
+      <div class="stat"><div class="num">60<small>+</small></div><div class="lab">读过的心理学书</div></div>
+      <div class="stat"><div class="num">30<small>+</small></div><div class="lab">跑过的线下工作坊</div></div>
+    </div>
+  </section>
+
+  <!-- 3 TIMELINE -->
+  <section class="reveal">
+    <span class="sec-no">03 — Timeline</span>
+    <h2 class="sec-title">双轨人生</h2>
+    <p class="sec-sub">左边是"正经事"，右边是"偷偷过的日子"。</p>
+    <div class="tl">
+      <div class="tl-row">
+        <div class="tl-node"></div>
+        <div class="tl-card left"><div class="yr">2019</div><h4>拿到三级心理咨询师证书</h4><p>学会先接住情绪，再谈方法。</p></div>
+        <div class="tl-card life right"><div class="yr">同年</div><h4>第一次带女性读书会</h4><p>发现一群人互相托着走，比一个人强。</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-node"></div>
+        <div class="tl-card left"><div class="yr">2021</div><h4>考下高级人工智能训练师</h4><p>开始相信：普通人也能用好 AI。</p></div>
+        <div class="tl-card life right"><div class="yr">同年</div><h4>开始用 AI 写教案</h4><p>半小时出骨架，剩下时间想怎么讲人话。</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-node"></div>
+        <div class="tl-card left"><div class="yr">2023</div><h4>转型做 AI 讲师</h4><p>专讲"零基础也能上手"的那部分。</p></div>
+        <div class="tl-card life right"><div class="yr">同年</div><h4>把心理学搬进 AI 课</h4><p>学员卡住，常常不是技术问题，是怕。</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-node"></div>
+        <div class="tl-card left"><div class="yr">2024</div><h4>接手省妇联女性 AI 学习圈</h4><p>带着一群姐姐从零搭出第一个网站。</p></div>
+        <div class="tl-card life right"><div class="yr">同年</div><h4>在海口开第一场线下工作坊</h4><p>看见她们做出东西时眼睛亮了，值了。</p></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-node"></div>
+        <div class="tl-card left"><div class="yr">2025</div><h4>零代码编程课上线</h4><p>不懂代码，也能做出自己的小工具。</p></div>
+        <div class="tl-card life right"><div class="yr">现在</div><h4>养了第 12 盆多肉</h4><p>照顾别人之前，先把自己照顾好。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 BENTO -->
+  <section class="reveal">
+    <span class="sec-no">04 — Gallery</span>
+    <h2 class="sec-title">兴趣项目展</h2>
+    <p class="sec-sub">把爱好包装成"项目"，每格一句心得。</p>
+    <div class="bento">
+      <div class="cell c1 tall"><span class="emoji">📚</span><div class="kicker">Project 01</div><h4>AI 备课搭子</h4><p class="note">"先有骨架，再填血肉。"——用 AI 半小时出一份课件骨架。</p></div>
+      <div class="cell c2"><span class="emoji">🧰</span><div class="kicker">Project 02</div><h4>心理急救箱</h4><p class="note">"焦虑是没说清的需求。"</p></div>
+      <div class="cell c3"><span class="emoji">🧩</span><div class="kicker">Project 03</div><h4>零代码实验室</h4><p class="note">"会描述需求就够了。"</p></div>
+      <div class="cell c4"><span class="emoji">🎬</span><div class="kicker">Project 04</div><h4>影像共创</h4><p class="note">"每个人都是导演。"</p></div>
+      <div class="cell c5"><span class="emoji">🌿</span><div class="kicker">Project 05</div><h4>海口慢生活</h4><p class="note">"慢下来才有灵感。"</p></div>
+      <div class="cell c6"><span class="emoji">🪴</span><div class="kicker">Project 06</div><h4>多肉观察日记</h4><p class="note">"照顾自己也是一种项目。"</p></div>
+    </div>
+  </section>
+
+  <!-- 5 RADAR -->
+  <section class="reveal">
+    <span class="sec-no">05 — Skills</span>
+    <h2 class="sec-title">能力雷达</h2>
+    <p class="sec-sub">硬技能打底，软技能才是我的底色（带 ★ 为软技能）。</p>
+    <div class="radar-wrap">
+      <svg class="radar-svg" id="radar" viewBox="0 0 320 320" role="img" aria-label="八项技能雷达图"></svg>
+      <div class="radar-legend" id="legend"></div>
+    </div>
+  </section>
+
+  <!-- 6 TESTIMONIALS -->
+  <section class="reveal">
+    <span class="sec-no">06 — Voices</span>
+    <h2 class="sec-title">学员嘴里的我</h2>
+    <p class="sec-sub">吐槽和暖心混着来，更像一个真人。</p>
+    <div class="tests">
+      <div class="test"><p class="quote">本以为 AI 是年轻人的事，美瑶老师让我敢上手了。</p><div class="who"><span class="rel">学员</span><span class="name">职场妈妈 · 阿芳</span></div></div>
+      <div class="test"><p class="quote">她不讲术语，就教我怎么用 AI 写朋友圈文案，当天就用上了。</p><div class="who"><span class="rel">学员</span><span class="name">个体户 · 陈姐</span></div></div>
+      <div class="test"><p class="quote">她是我见过最会把焦虑翻译成步骤的人。</p><div class="who"><span class="rel">闺蜜</span><span class="name">小鹿</span></div></div>
+      <div class="test"><p class="quote">线下工作坊像朋友聚会，学完还不想走。</p><div class="who"><span class="rel">同事</span><span class="name">老周</span></div></div>
+      <div class="test"><p class="quote">59 岁我做出了第一个小程序，她鼓掌比我还响。</p><div class="who"><span class="rel">学员</span><span class="name">退休教师 · 王姨</span></div></div>
+      <div class="test"><p class="quote">和她一起备课，脑子里那团乱麻会自己理顺。</p><div class="who"><span class="rel">合作伙伴</span><span class="name">林老师</span></div></div>
+    </div>
+  </section>
+
+  <!-- 7 CONTACT -->
+  <section class="reveal">
+    <span class="sec-no">07 — Say Hi</span>
+    <h2 class="sec-title">来破个冰</h2>
+    <p class="sec-sub">每个渠道都给你一个开场白，别只会说"在吗"。</p>
+    <div class="channels">
+      <div class="ch"><div class="ic">💬</div><h4>微信</h4><div class="ice">破冰：你最近在纠结用哪个 AI 工具？</div><a class="cta" href="#">加我，备注"来学习圈"</a></div>
+      <div class="ch"><div class="ic">📕</div><h4>小红书</h4><div class="ice">破冰：想看我用 AI 做的短视频吗</div><a class="cta" href="#">关注 @美瑶老师</a></div>
+      <div class="ch"><div class="ic">✉️</div><h4>邮箱</h4><div class="ice">破冰：想请我去做一场线下工作坊？</div><a class="cta" href="#">写需求给我</a></div>
+      <div class="ch"><div class="ic">📍</div><h4>线下 · 海口</h4><div class="ice">破冰：这周末有空来骑楼喝咖啡吗</div><a class="cta" href="#">报名下一场</a></div>
+    </div>
+  </section>
+
+  <section class="pz-sec" id="voices">
+  <div class="pz-inner">
+    <div class="pz-head">
+      <div class="pz-kicker">— Real Voices · 学员真实好评</div>
+      <h2 class="pz-title">听过课的<em>她们</em>，<br/>怎么说。</h2>
+      <p class="pz-sub">以下为学员与合作伙伴的微信真实反馈截图，原图未删改、不修饰。<br/>想定制课程或约时间？微信 / 电话 <a class="pz-tel" href="tel:18976573949">18976573949</a></p>
+    </div>
+    <div class="pz-grid">
+      <figure class="pz-item">
+        <img src="./img/hp1.png" alt="学员真实好评 1" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①1</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp2.png" alt="学员真实好评 2" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①2</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp3.png" alt="学员真实好评 3" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①3</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp4.png" alt="学员真实好评 4" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①4</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp5.png" alt="学员真实好评 5" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①5</figcaption>
+      </figure>
+      <figure class="pz-item">
+        <img src="./img/hp6.png" alt="学员真实好评 6" loading="lazy" />
+        <figcaption class="pz-cap">好评 ①6</figcaption>
+      </figure>
+    </div>
+  </div>
+  <style>
+  .pz-sec{padding:clamp(72px,9vh,128px) clamp(20px,4vw,56px);position:relative}
+  .pz-inner{max-width:1180px;margin:0 auto}
+  .pz-head{margin-bottom:44px}
+  .pz-kicker{font-family:"JetBrains Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.2em;text-transform:uppercase;opacity:.6;margin-bottom:14px}
+  .pz-title{font-family:"Fraunces",Georgia,"Songti SC","STSong",serif;font-weight:300;font-size:clamp(32px,4.6vw,64px);line-height:1.06;letter-spacing:-.02em}
+  .pz-title em{font-style:italic}
+  .pz-sub{margin-top:16px;font-size:15px;line-height:1.7;opacity:.72}
+  .pz-tel{color:inherit;text-decoration:underline;text-underline-offset:3px}
+  .pz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .pz-item{position:relative;margin:0;border-radius:16px;overflow:hidden;background:rgba(128,128,128,.06);box-shadow:0 14px 34px -20px rgba(0,0,0,.55);transition:transform .45s cubic-bezier(.2,.7,.2,1),box-shadow .45s;cursor:zoom-in}
+  .pz-item:hover{transform:translateY(-8px);box-shadow:0 30px 56px -24px rgba(0,0,0,.6)}
+  .pz-item img{width:100%;height:auto;display:block}
+  .pz-cap{position:absolute;left:12px;bottom:12px;font-size:11px;letter-spacing:.06em;color:#fff;background:rgba(0,0,0,.42);padding:5px 11px;border-radius:999px;backdrop-filter:blur(6px);font-family:"JetBrains Mono",monospace}
+  @media(max-width:600px){.pz-grid{grid-template-columns:repeat(2,1fr);gap:12px}.pz-item{border-radius:12px}}
+  </style>
+</section>
+
+<footer>
+    <div class="dotline"></div>
+    这是按「美瑶老师」公开身份模拟填充的示例（AI 讲师 × 心理咨询师 × 高级人工智能训练师，海南省妇联女性 AI 学习圈负责人，海口）。<br>
+    未提供的信息已合理脑补，正式使用前把真实信息替换进去即可。单文件 H5 正是 7/25《个人网站搭建》课上能现场演示的样子。
+  </footer>
+
+</div>
+
+<script>
+  // ===== Radar =====
+  (function(){
+    var skills=[
+      {name:"AI 工具实操",v:92},
+      {name:"课程设计",v:88},
+      {name:"提示词工程",v:85},
+      {name:"心理学疏导",v:90},
+      {name:"公开演讲",v:82},
+      {name:"社群运营",v:80},
+      {name:"共情倾听 ★",v:95},
+      {name:"把复杂讲简单 ★",v:93}
+    ];
+    var cx=160,cy=160,R=120,n=skills.length;
+    function pt(i,r){var a=(i*360/n-90)*Math.PI/180;return [cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+    var svg=document.getElementById("radar");
+    var ns="http://www.w3.org/2000/svg";
+    function el(t,attr){var e=document.createElementNS(ns,t);for(var k in attr)e.setAttribute(k,attr[k]);return e;}
+    [0.25,0.5,0.75,1].forEach(function(f){
+      var pts=[];for(var i=0;i<n;i++){var p=pt(i,R*f);pts.push(p[0]+","+p[1]);}
+      svg.appendChild(el("polygon",{points:pts.join(" "),fill:"none",stroke:"rgba(31,61,50,0.12)","stroke-width":1}));
+    });
+    for(var i=0;i<n;i++){
+      var p=pt(i,R);
+      svg.appendChild(el("line",{x1:cx,y1:cy,x2:p[0],y2:p[1],stroke:"rgba(31,61,50,0.12)","stroke-width":1}));
+      var lp=pt(i,R+22);
+      var t=el("text",{x:lp[0],y:lp[1],"font-size":11,fill:"#33614F","font-family":"var(--sans)","text-anchor":(lp[0]<cx?"end":"start"),"dominant-baseline":"middle"});
+      t.textContent=skills[i].name;svg.appendChild(t);
+    }
+    var dpts=[];for(var j=0;j<n;j++){var dp=pt(j,R*skills[j].v/100);dpts.push(dp[0]+","+dp[1]);}
+    svg.appendChild(el("polygon",{points:dpts.join(" "),fill:"rgba(224,162,59,0.28)",stroke:"#C5821F","stroke-width":2}));
+    skills.forEach(function(s,i){var dp=pt(i,R*s.v/100);svg.appendChild(el("circle",{cx:dp[0],cy:dp[1],r:3,fill:"#C5821F"}));});
+    var lg=document.getElementById("legend");
+    skills.forEach(function(s){var sp=document.createElement("span");sp.innerHTML='<i class="dot"></i>'+s.name+" · "+s.v;lg.appendChild(sp);});
+  })();
+
+  // ===== Reveal on scroll =====
+  (function(){
+    var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var items=document.querySelectorAll(".reveal");
+    if(reduce||!("IntersectionObserver" in window)){items.forEach(function(e){e.classList.add("in");});return;}
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:0.12});
+    items.forEach(function(e){io.observe(e);});
+  })();
+
+  document.querySelectorAll(".vibe").forEach(function(v){
+    v.addEventListener("click",function(){v.classList.toggle("on");});
+  });
+</script>
+</body>
+</html>

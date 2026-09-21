@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第7款 · Drift calm 风 —— 别人怎么做出同款</title>
+<style>
+:root{--ink:#1f2421;--paper:#faf8f4;--line:#e2ddd2;--muted:#6b6f69;--green:#0f3d34;--terra:#b04a2f;--gold:#c9a05a;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.75;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px;}
+h1{font-size:26px;font-weight:700;letter-spacing:-.01em;}
+h1 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:6px;}
+section{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);}
+h2{font-size:21px;margin:6px 0 14px;}
+h3{font-size:16px;margin:18px 0 8px;color:var(--green);}
+p{margin:8px 0;color:#33382f;}
+.tag{display:inline-block;background:var(--green);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;margin-right:6px;vertical-align:middle;}
+.tag.t{background:var(--terra);}
+pre{background:#1f2421;color:#e8e4da;padding:16px 18px;border-radius:8px;overflow-x:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:10px 0;}
+.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0;}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-bottom:1px dashed var(--line);}
+.steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:26px;height:26px;background:var(--terra);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-size:14px;font-weight:600;margin-top:10px;margin-right:8px;}
+.btn.g{background:var(--green);}
+.note{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); padding:14px 16px;border-radius:6px;margin:14px 0;font-size:14px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#f0ece2;font-weight:700;}
+a{color:var(--green);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>第7款 · Drift calm 风个人站 —— 别人怎么做出同款<small>别人操作的实体教程：复制提示词 + SOP 步骤，零代码也能出同款</small></h1>
+
+<section>
+<h2>① 这款长什么样</h2>
+<p><span class="tag">首屏视频</span><span class="tag t">汉堡变X</span><span class="tag">奶油色关于区</span><span class="tag">左栏sticky</span><span class="tag">卡右滑入</span><span class="tag">滚动高亮</span></p>
+<p>对标 <b>Drift calm</b> 的视觉：首屏满屏动态视频 + 白色胶囊导航（汉堡两道线变 X）+ 奶油色(#F6E4CF)关于区用 25px 圆角叠盖首屏 + 深色特性区左栏 sticky、三张玻璃卡从右滑入、滚动时高亮对应导航。所有效果纯前端，双击就能开。</p>
+<a class="btn g" href="./index.html" target="_blank">↗ 看第7款成品实例</a>
+</section>
+
+<section>
+<h2>② 复制哪段提示词</h2>
+<div class="note">下面这段就是你给我的原版 Drift calm 设计提示词（零改动）。它是"零依赖单文件"——所有 CSS 内联、不依赖任何外部 CDN，用真实照片/视频即可。别人粘到 WorkBuddy 就能出同款。注意：首屏最好用一段真人慢动效视频，若不方便就用自己的证件照（我会用 ken-burns 慢推代替）。</div>
+<pre>请帮我做一个「Drift calm 风」的单文件落地页：一个 .html 文件，双击就能在浏览器打开，所有 CSS 内联、不依赖任何外部 CDN。完整保留 Drift 的所有排版、动效与交互（汉堡变 X 动画、卡片从右滑入、左栏 sticky、滚动高亮导航），只替换文字和素材，不要删任何效果。
+
+【搭建规格——照做，不要改】
+首屏：满屏高度，背景是动态视频（素材①），上铺半透明黑色遮罩；顶部居中一个白色圆角胶囊导航，左边写我的名字 + "."，右边一个汉堡按钮（点击两道线动画变成 X）；底部居中大标题两行（第一行常规无衬线大字，第二行里指定的那个词用衬线斜体），下方一句副标题，再下方一个半透明毛玻璃条 + 一个白色「免费报名」按钮。
+
+关于区：奶油色背景(#F6E4CF)、顶部圆角 25px 上叠盖住首屏；居中一段介绍文字；两个胶囊按钮（深色「联系我的名字」带邮件图标 / 浅色「关注动态」带加号图标）；一条装饰分隔线（小圆点+横线+小圆点）；底部左侧 LOGO 文字「Calm / Amplified」，右侧一大段介绍（配素材②照片）。
+
+特性区：深色背景（用素材②照片做模糊暗化处理当背景图），左栏 sticky 显示总标题 + 三个特性导航按钮（点击平滑滚动到对应卡片），右栏三张玻璃卡片从右侧滑入、滚动时高亮对应导航；每张卡有 LOGO、标题、一张 16:9 图片（素材③）、一段描述。
+
+【素材处理】
+① 我的证件照 → 请先用这张照片生成一段 5 秒 1080P 慢动效视频（微笑加深 + 轻微呼吸感 + 极轻微头部摆动），作为首屏背景视频；不便生视频就用这张照片本身做 ken-burns 慢推效果代替。
+② 关于区照片与特性区背景都用同一张证件照。
+③ 三张特性卡图片：未拖图就为每张生成一张适配深色背景的 16:9 横版配图（不要水印）。
+
+【我的个人信息】（自动拆分到标题 / 副标题 / 按钮 / 三张特性卡里）：
+我是小沅老师，AI 讲师、心理咨询师、高级人工智能训练师。我做的工具顺着你的节奏走，而不是压过它——为轻松、专注与心流而设计。我的三门主打内容是：AI 零代码编程（不懂代码也能做开发，用自然语言搭网站和 APP）、Vibe Coding（从一句话想法出发，AI 帮你把灵感变成作品）、AI × 心理学（用心理咨询视角设计学习节奏，帮你留在当下不内耗）。
+
+不要向我提问，直接生成网站文件，所有素材与 HTML 放在同一文件夹、用相对路径引用，我双击 HTML 就能看到完整效果。</pre>
+</section>
+
+<section>
+<h2>③ 别人操作的 SOP（手把手 7 步）</h2>
+<ol class="steps">
+<li><b>打开 WorkBuddy</b>，新建一个对话。</li>
+<li><b>复制上面整段提示词</b>（从"请帮我做一个"到"看到完整效果"）。</li>
+<li>把【我的个人信息】换成<b>你自己的真实资料</b>（名字、定位、三门主打内容）。</li>
+<li><b>把你的证件照拖进对话框一起发</b>（做首屏视频/照片用）。</li>
+<li><b>发送</b>，等它生成 <code>index.html</code> + 素材文件夹（单文件，几秒到一分钟）。</li>
+<li><b>双击本地 index.html</b> 预览——所有 CSS 内联、零外部依赖，离线也能开。</li>
+<li><b>部署</b>：用 WorkBuddy 的「发布 / 部署」功能，拿到一个谁都能点开的链接，发到群里。</li>
+</ol>
+<div class="note"><b>关键提醒：</b>这段提示词是"零依赖单文件"，比 React 那几款更稳——没有任何外部 CDN，别人双击就能看。它是"款式模板"，别人填自己信息出的是他自己同款站。三张特性卡图若没拖图，WorkBuddy 会自动生成适配深色背景的配图。</div>
+</section>
+
+<section>
+<h2>④ 复制提示词能出"一模一样"吗</h2>
+<table>
+<tr><th>项</th><th>零依赖单文件 HTML</th></tr>
+<tr><td>粘到 WorkBuddy 直接出第7款？</td><td><b>能</b>，视觉/结构/动效一致，离线可双击</td></tr>
+<tr><td>零基础学员可用？</td><td><b>可用</b>（不用装环境、无外部依赖）</td></tr>
+<tr><td>图片 / 视频</td><td>换成你自己真实素材后完全一致</td></tr>
+</table>
+<p style="margin-top:14px">结论：上面这段中文提示词就是"好用的提示词"——直接产出第7款同款、零依赖可部署的单文件网站。</p>
+<a class="btn" href="./index.html" target="_blank">↗ 回到第7款实例</a>
+<a class="btn g" href="../index.html" target="_blank">↗ 回到七款总览</a>
+</section>
+
+</div>
+</body>
+</html>

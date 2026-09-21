@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第4款 · Viktor Oddy 风 —— 别人怎么做出同款</title>
+<style>
+:root{--ink:#1f2421;--paper:#faf8f4;--line:#e2ddd2;--muted:#6b6f69;--green:#0f3d34;--terra:#b04a2f;--gold:#c9a05a;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.75;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px;}
+h1{font-size:26px;font-weight:700;letter-spacing:-.01em;}
+h1 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:6px;}
+section{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);}
+h2{font-size:21px;margin:6px 0 14px;}
+h3{font-size:16px;margin:18px 0 8px;color:var(--green);}
+p{margin:8px 0;color:#33382f;}
+.tag{display:inline-block;background:var(--green);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;margin-right:6px;vertical-align:middle;}
+.tag.t{background:var(--terra);}
+pre{background:#1f2421;color:#e8e4da;padding:16px 18px;border-radius:8px;overflow-x:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:10px 0;}
+.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0;}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-bottom:1px dashed var(--line);}
+.steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:26px;height:26px;background:var(--terra);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-size:14px;font-weight:600;margin-top:10px;margin-right:8px;}
+.btn.g{background:var(--green);}
+.note{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); padding:14px 16px;border-radius:6px;margin:14px 0;font-size:14px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#f0ece2;font-weight:700;}
+a{color:var(--green);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>第4款 · Viktor Oddy 风个人站 —— 别人怎么做出同款<small>别人操作的实体教程：复制提示词 + SOP 步骤，零代码也能出同款</small></h1>
+
+<!-- 是什么 -->
+<section>
+<h2>① 这款长什么样</h2>
+<p><span class="tag">暗色高级</span><span class="tag t">大留白</span><span class="tag">滚动叙事</span><span class="tag">跑马灯</span><span class="tag">好评轮播</span><span class="tag">鼠标轨迹</span></p>
+<p>对标 <b>Viktor Oddy / Vortex Studio</b> 的作品集视觉：主色深墨 <code>#051A24</code> / 次墨 <code>#0D212C</code>，纯白底，衬线大标题，超圆角（40px）+ 多层柔影。从上到下共 9 段：Hero → 无限跑马灯 → 引言视差图 → 双定价卡 → 学员好评轮播 → 项目墙 → 合作鼠标轨迹 → 页脚 → 底部悬浮导航。</p>
+<p>动效：滚动揭示、跑马灯、视差、自动轮播——都靠纯前端 JS，<b>不需要装任何环境</b>。</p>
+<a class="btn g" href="./index.html" target="_blank">↗ 看第4款成品实例</a>
+</section>
+
+<!-- 两条路线 -->
+<section>
+<h2>② 两条路线（复制哪种提示词）</h2>
+<table>
+<tr><th>路线</th><th>复制什么</th><th>产出</th><th>适合谁</th></tr>
+<tr><td><b>A · 零代码单文件</b>（推荐）</td><td>下面「路线 A 提示词」（中文模板）</td><td>单文件 HTML，双击即开、可直接部署</td><td>零基础学员 / 课堂上用</td></tr>
+<tr><td><b>B · 原版 React 工程</b></td><td>下面「路线 B 提示词」（英文设计源）</td><td>React + Vite + Tailwind 工程，需 npm run dev</td><td>会跑前端工程的人</td></tr>
+</table>
+<div class="note"><b>诚实说明：</b>你从"每天免费 Copy 一次"的设计库复制来的那段英文提示词，是写给 React 编程工具的原版（路线 B）。我把它<b>还原成了零代码单文件版（路线 A）</b>——视觉、结构、动效完全一致，但不用装 Node、双击就能开。<b>课堂上给学员用的就是路线 A 这段提示词</b>，它是真正"粘到 WorkBuddy 就能出第4款"的好用提示词。</div>
+</section>
+
+<!-- 路线A -->
+<section>
+<h2>③ 路线 A 提示词（中文模板 · 复制这段）</h2>
+<p>复制下面整段，粘到 WorkBuddy 对话框，把【方括号】换成你自己的信息即可。</p>
+<pre>请帮我做一个单文件 HTML 个人网站（CSS/JS 全内联，手机适配，双击即可打开），风格对标 Viktor Oddy / Vortex Studio 那种「暗色高级、大留白、滚动叙事」的作品集风：
+
+【视觉】
+- 主色 深墨 #051A24，次墨 #0D212C，正文 #051A24，弱文 #273C46；背景纯白 #fff。
+- 字体：英文/数字用 PP Neue Montreal（没有就回落 system-ui）；大标题衬线用 PP Mondwest（没有就回落 Fraunces / Georgia）。
+- 大量留白，章节之间用间距分隔，不用粗分割线；圆角大（rounded-40px），阴影用多层柔影。
+
+【结构（从上到下）】
+1. Hero：姓名（衬线大字）+ 一行身份（mono 小字）+ 一句主张 + 三段介绍 + 两个圆角按钮（主按钮深墨底白字 / 次按钮白底描边）。
+2. 无限跑马灯：一行横向无限滚动的图片带（用我自己的真实照片/作品图）。
+3. 引言区：一句衬线大字主张 + 署名 + 一张视差图（滚动时轻微上下位移）。
+4. 双定价卡：深墨底一张 + 白底一张，圆角 40px，含标题/一句话/价格/按钮。
+5. 学员好评轮播：横滑卡片，每张一张真实好评截图 + 一行"学员真实好评"标注，自动轮播 + 左右箭头。
+6. 项目墙：3 个竖向项目，每个左侧标题+一句话，下面一张大图（真实成果图）。
+7. 合作区：大留白圆角区块，衬线大字"与我们合作" + 一个深墨圆角按钮；鼠标移动时在光标处冒出小图（用真实图）。
+8. 页脚 + 版权行（城市）。
+9. 底部悬浮导航：固定底部居中圆角胶囊，含一个衬线 logo 字 + 一个主按钮。
+
+【动效】
+- IntersectionObserver 滚动揭示（translateY 30px→0 + 透明度），触发一次。
+- 跑马灯 CSS 无限滚动（marquee）。
+- 视差图随滚动位移。
+- 好评轮播 3 秒自动切 + 悬停暂停 + 左右箭头。
+
+【禁止】紫渐变、玻璃拟态、emoji 堆砌、Inter 当大标题。
+
+以下是我的资料（方括号换成你的）：
+【你的名字】
+【你的一句话身份，如：AI 讲师 · 心理咨询师】
+【你的一句话主张】
+【三段介绍】
+【两个服务/定价】
+【3 个项目（标题+一句话+图）】
+【你的城市】</pre>
+</section>
+
+<!-- 路线B -->
+<section>
+<h2>④ 路线 B 提示词（英文设计源 · 你复制的那段）</h2>
+<p>原版设计库提示词（写给 React 工具）。粘到 WorkBuddy 也会生成，但产出是 React 工程，需要本地 npm 才能预览。</p>
+<pre>You are a senior frontend engineer. Build a personal portfolio website with React + Vite + Tailwind CSS.
+
+Design language: Viktor Oddy / Vortex Studio style — dark, premium, lots of whitespace, scroll-driven narrative.
+Colors: --ink #051A24, --ink2 #0D212C, --muted #273C46. Background pure white.
+Fonts: 'PP Neue Montreal' for body, 'PP Mondwest' (fallback Fraunces/Georgia) for serif display.
+Large radii (rounded-[40px]), soft multi-layer shadows.
+
+Sections (top to bottom):
+1. Hero — name (serif), role (mono), headline, 3 paragraphs, two rounded pill buttons.
+2. Infinite marquee strip of images.
+3. Testimonial quote + parallax image.
+4. Two pricing cards (dark + light), rounded-40px.
+5. Testimonial carousel (auto-play, arrows, hover pause).
+6. Projects wall — 3 vertical projects with big images.
+7. Partner CTA section with cursor-trail floating images on mousemove.
+8. Footer + copyright.
+9. Fixed bottom nav pill.
+
+Animations: IntersectionObserver reveal, CSS marquee, parallax on scroll, 3s auto carousel.
+No purple gradients, no glassmorphism, no emoji.</pre>
+</section>
+
+<!-- SOP -->
+<section>
+<h2>⑤ 别人操作的 SOP（手把手 7 步）</h2>
+<ol class="steps">
+<li><b>打开 WorkBuddy</b>，新建一个对话。</li>
+<li><b>复制「路线 A 提示词」</b>整段（上面第③节那个灰框）。</li>
+<li><b>粘贴</b>到对话框，把【你的名字】【你的一句话身份】等<b>所有方括号</b>换成你自己的信息。</li>
+<li><b>发送</b>，等它生成 <code>index.html</code>（单文件，几秒到一分钟）。</li>
+<li><b>双击本地 index.html</b> 预览效果（手机也能看）。</li>
+<li><b>换图</b>：把自己真实照片 / 学员好评截图放进和 index.html 同一个文件夹，把代码里 <code>img/xxx.png</code> 改成你的图片文件名。</li>
+<li><b>部署</b>：用 WorkBuddy 的「发布 / 部署」功能，拿到一个谁都能点开的链接，发到群里。</li>
+</ol>
+<div class="note"><b>关键提醒：</b>路线 A 是"款式模板"——别人复制后填自己的信息，出来的是<b>他自己的、但同款高级感</b>的网站，不会变成小沅老师的站。图片一定要换成自己真实的，别留莫名其妙的图。</div>
+</section>
+
+<!-- 诚实 -->
+<section>
+<h2>⑥ 复制提示词能出"一模一样"吗</h2>
+<table>
+<tr><th>项</th><th>路线 A（单文件）</th><th>路线 B（React）</th></tr>
+<tr><td>粘到 WorkBuddy 直接出第4款？</td><td><b>能</b>，视觉/结构/动效一致，可双击部署</td><td>能，但出的是 React 工程</td></tr>
+<tr><td>零基础学员可用？</td><td><b>可用</b>（不用装环境）</td><td>需会 npm，课堂上不推荐</td></tr>
+<tr><td>图片</td><td>换成你自己真实图后完全一致</td><td>同左</td></tr>
+</table>
+<p style="margin-top:14px">结论：<b>路线 A 这段中文提示词就是"好用的提示词"</b>——它直接产出第4款同款、可部署的单文件网站。你复制来的英文原版（路线 B）是设计源头，适合会跑工程的人。</p>
+<a class="btn" href="./index.html" target="_blank">↗ 回到第4款实例</a>
+<a class="btn g" href="../index.html" target="_blank">↗ 回到四款总览</a>
+</section>
+
+</div>
+</body>
+</html>

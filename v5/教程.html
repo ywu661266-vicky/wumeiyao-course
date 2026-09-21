@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第5款 · VortxLab 风 —— 别人怎么做出同款</title>
+<style>
+:root{--ink:#1f2421;--paper:#faf8f4;--line:#e2ddd2;--muted:#6b6f69;--green:#0f3d34;--terra:#b04a2f;--gold:#c9a05a;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--paper);line-height:1.75;}
+.wrap{max-width:1080px;margin:0 auto;padding:40px 24px 64px;}
+h1{font-size:26px;font-weight:700;letter-spacing:-.01em;}
+h1 small{display:block;font-size:14px;color:var(--muted);font-weight:400;margin-top:6px;}
+section{margin-top:44px;padding-top:28px;border-top:1px solid var(--line);}
+h2{font-size:21px;margin:6px 0 14px;}
+h3{font-size:16px;margin:18px 0 8px;color:var(--green);}
+p{margin:8px 0;color:#33382f;}
+.tag{display:inline-block;background:var(--green);color:#fff;font-size:12px;padding:2px 10px;border-radius:20px;margin-right:6px;vertical-align:middle;}
+.tag.t{background:var(--terra);}
+pre{background:#1f2421;color:#e8e4da;padding:16px 18px;border-radius:8px;overflow-x:auto;font-family:"SFMono-Regular",Consolas,monospace;font-size:12.5px;line-height:1.6;white-space:pre-wrap;word-break:break-word;margin:10px 0;}
+.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0;}
+.steps li{counter-increment:s;position:relative;padding:10px 0 10px 42px;border-bottom:1px dashed var(--line);}
+.steps li::before{content:counter(s);position:absolute;left:0;top:10px;width:26px;height:26px;background:var(--terra);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+.btn{display:inline-block;background:var(--terra);color:#fff;text-decoration:none;padding:9px 16px;border-radius:6px;font-size:14px;font-weight:600;margin-top:10px;margin-right:8px;}
+.btn.g{background:var(--green);}
+.note{background:#fff; border:1px solid var(--line); border-left:4px solid var(--gold); padding:14px 16px;border-radius:6px;margin:14px 0;font-size:14px;}
+table{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
+th,td{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top;}
+th{background:#f0ece2;font-weight:700;}
+a{color:var(--green);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>第5款 · VortxLab 风个人站 —— 别人怎么做出同款<small>别人操作的实体教程：复制提示词 + SOP 步骤，零代码也能出同款</small></h1>
+
+<section>
+<h2>① 这款长什么样</h2>
+<p><span class="tag">纯黑沉浸</span><span class="tag t">全屏视频</span><span class="tag">八边形切角按钮</span><span class="tag">左栏头像</span><span class="tag">三行主标题</span></p>
+<p>对标 <b>VortxLab</b> 的视觉：纯黑底、全屏循环背景视频、八边形切角按钮（clip-path）、Inter + Noto Sans SC 字体、顶部胶囊导航 + 左侧竖栏头像 + 居中三行主标题 + 底部三栏（简介 + 行动号召 + 社交圆钮）。所有效果纯前端，双击就能开。</p>
+<a class="btn g" href="./index.html" target="_blank">↗ 看第5款成品实例</a>
+</section>
+
+<section>
+<h2>② 复制哪段提示词</h2>
+<div class="note">下面这段就是你给我的原版 VortxLab 设计提示词（零改动）。它原本是写给 AI 编程工具的设计源，我已还原成<b>单文件 HTML</b>（与前面几款一致，可直接部署、零代码）。别人粘到 WorkBuddy 就能出同款。</div>
+<pre>你是一个网页生成器。请基于下面【设计规格】和【我的个人信息】，生成一个单文件 HTML 个人主页：双击就能在浏览器打开、零依赖、不要 React/Vite 工程、所有 CSS/JS 内联、除了 Google Fonts 和背景视频外不引用任何外部文件。不要向我提问，直接生成完整 .html 文件。
+
+【设计规格 · VortxLab 风格】
+- 纯黑底色、全屏沉浸式。
+- 字体用 Google Fonts 引入 Inter(300–900) + Noto Sans SC，写 preconnect，font-family: 'Inter','Noto Sans SC',sans-serif。
+- 八边形切角按钮三档（CSS clip-path）：.btn-cut 实心 12px 切角 polygon(12px 0%,calc(100% - 12px) 0%,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0% calc(100% - 12px),0% 12px)，白底黑字；.btn-cut-border 描边：白外框 + ::before(inset:1px 黑底 + 11px 切角) 做出白边黑底、文字白色；.btn-cut-sm 小号 8px 切角，用于社交圆钮。
+- 入场动画：@keyframes fadeUp(opacity0→1,translateY24px→0) 与 fadeIn；.anim-stagger(opacity:0;animation:fadeUp .8s forwards) / .anim-fade(fadeIn 1s forwards)；各元素 inline animation-delay 错峰 0.1/0.2/0.4/0.5/0.7/0.85/1s。
+- 背景：绝对定位铺满容器 object-fit:cover 的循环视频 &lt;video autoplay loop muted playsinline&gt;，src 用【我的个人信息】里的背景视频链接（空则用示例）。视频上盖 ::after 暗色渐变蒙版（顶/底加深）保证白字清晰。
+- 布局：① 顶部 nav——左 Logo（四角星/漩涡 SVG + 文字「名字字标」）；右两个钮「导航按钮1」(.btn-cut-border 描边) +「导航按钮2」(.btn-cut 实心)。② 主体上半——左侧竖栏 left-col（仅 lg 显示）：标语 + 圆形头像（照片）+ 小标签「栏目名 / 序号」。③ 主体正中 h1 三行（行高紧、字距收、纯白、text-shadow）：领域标签 / 定位 / 姓名。④ 底部三栏（md 起三列）：左栏简介文字；中栏标签「栏目名」+ CTA「行动号召」(.btn-cut 实心 + ArrowRight 箭头 SVG)；右栏三个社交圆钮（微信/小红书/微博 inline SVG，链接填社交链接）。
+- 响应式：nav 与左栏 &lt; md/&lt; lg 隐藏；底部 md 起三列；h1 字号断点递增(30→72px)。
+- 兜底：@media (prefers-reduced-motion:reduce){.anim-stagger,.anim-fade{animation:none!important;opacity:1!important;}}；文字直接写 HTML 不依赖 JS；照片 &lt;img&gt; 加 onerror 兜底（失败隐藏图片、显示渐变底+一个字占位）。
+
+【我的个人信息】（把内容换成我自己的；也可以直接把我的自我介绍/简历整段贴进来，你自行提取姓名、定位、简介等填到对应位置）</pre>
+</section>
+
+<section>
+<h2>③ 别人操作的 SOP（手把手 7 步）</h2>
+<ol class="steps">
+<li><b>打开 WorkBuddy</b>，新建一个对话。</li>
+<li><b>复制上面「设计规格」整段</b>（从"你是一个网页生成器"到"我的个人信息"结束）。</li>
+<li>把【我的个人信息】部分换成<b>你自己的真实资料</b>（名字、定位、简介、社交链接）。</li>
+<li><b>发送</b>，等它生成 <code>index.html</code>（单文件，几秒到一分钟）。</li>
+<li><b>双击本地 index.html</b> 预览（手机也能看）。</li>
+<li><b>换头像 / 背景视频</b>：把自己的照片、视频放进和 index.html 同一个文件夹，把代码里 <code>img/photo.jpg</code> / 视频链接改成你的文件名。</li>
+<li><b>部署</b>：用 WorkBuddy 的「发布 / 部署」功能，拿到一个谁都能点开的链接，发到群里。</li>
+</ol>
+<div class="note"><b>关键提醒：</b>这段提示词是"款式模板"——别人复制后填自己的信息，出来的是<b>他自己的、但同款酷感</b>的网站，不会变成小沅老师的站。背景视频若没有，可让 WorkBuddy 用你的证件照生成一段，或先留示例。</div>
+</section>
+
+<section>
+<h2>④ 复制提示词能出"一模一样"吗</h2>
+<table>
+<tr><th>项</th><th>单文件 HTML（已还原版）</th></tr>
+<tr><td>粘到 WorkBuddy 直接出第5款？</td><td><b>能</b>，视觉/结构/动效一致，可双击部署</td></tr>
+<tr><td>零基础学员可用？</td><td><b>可用</b>（不用装环境）</td></tr>
+<tr><td>图片 / 视频</td><td>换成你自己真实素材后完全一致</td></tr>
+</table>
+<p style="margin-top:14px">结论：上面这段中文提示词就是"好用的提示词"——直接产出第5款同款、可部署的单文件网站。</p>
+<a class="btn" href="./index.html" target="_blank">↗ 回到第5款实例</a>
+<a class="btn g" href="../index.html" target="_blank">↗ 回到七款总览</a>
+</section>
+
+</div>
+</body>
+</html>
